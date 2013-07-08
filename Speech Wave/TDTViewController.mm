@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor darkGrayColor];
     _self_view = (TDTWaveView *) self.view;
     recorder = new AQRecorder();
 	player = new AQPlayer();

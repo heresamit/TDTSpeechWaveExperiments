@@ -206,6 +206,8 @@ bail:
     self.x = width/cycles;
     count = 0;
     w = - 15;
+    CGFloat strokeColour1[4] = {1.0,1.0,1.0,1.0};
+    CGContextSetStrokeColor(context,strokeColour1);
     while (w <= width) {
         count++;
         int n = cycles - abs((cycles/2) - count);
