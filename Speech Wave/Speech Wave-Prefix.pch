@@ -12,3 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#define kBufferDurationSeconds .5
+#define kLevelFalloffPerSec .8
+#define kMinDBvalue -80.0

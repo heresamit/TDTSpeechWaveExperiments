@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AQPlayer.h"
+#import "AQRecorder.h"
+#import <Foundation/Foundation.h>
 
-@interface TDTViewController : UIViewController
-
+@interface TDTViewController : UIViewController {
+    AQRecorder*					recorder;
+    AQPlayer*					player;
+    CFStringRef					recordFilePath;
+    BOOL						playbackWasInterrupted;
+	BOOL						playbackWasPaused;
+	
+}
+@property (nonatomic, assign)	BOOL                inBackground;
 @end

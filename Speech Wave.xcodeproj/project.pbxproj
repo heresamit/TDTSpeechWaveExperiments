@@ -17,11 +17,20 @@
 		DFA8D458178A72C3005C2AF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D457178A72C3005C2AF2 /* Default@2x.png */; };
 		DFA8D45A178A72C3005C2AF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */; };
 		DFA8D45D178A72C3005C2AF2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */; };
-		DFA8D460178A72C3005C2AF2 /* TDTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */; };
+		DFA8D460178A72C3005C2AF2 /* TDTViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */; };
 		DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */; };
 		DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */; };
 		DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */; };
-		DFA8D46E178A730F005C2AF2 /* TDTWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */; };
+		DFA8D46E178A730F005C2AF2 /* TDTWaveView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */; };
+		DFA8D474178AA878005C2AF2 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D472178AA878005C2AF2 /* CAXException.cpp */; };
+		DFA8D47A178AA88D005C2AF2 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */; };
+		DFA8D47B178AA88D005C2AF2 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D478178AA88D005C2AF2 /* CAStreamBasicDescription.cpp */; };
+		DFA8D47D178AA8CA005C2AF2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */; };
+		DFA8D47F178AA90A005C2AF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */; };
+		DFA8D482178AA995005C2AF2 /* CADebugPrintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D480178AA995005C2AF2 /* CADebugPrintf.cpp */; };
+		DFA8D487178AAB07005C2AF2 /* AQPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */; };
+		DFA8D488178AAB07005C2AF2 /* AQRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */; };
+		DFA8D48B178AB17E005C2AF2 /* MeterTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,12 +49,29 @@
 		DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DFA8D45C178A72C3005C2AF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTViewController.h; sourceTree = "<group>"; };
-		DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDTViewController.m; sourceTree = "<group>"; };
+		DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTViewController.mm; sourceTree = "<group>"; };
 		DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTWaveView.h; sourceTree = "<group>"; };
-		DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTWaveView.m; sourceTree = "<group>"; };
+		DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTWaveView.mm; sourceTree = "<group>"; };
+		DFA8D472178AA878005C2AF2 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
+		DFA8D473178AA878005C2AF2 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
+		DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugMacros.cpp; sourceTree = "<group>"; };
+		DFA8D476178AA88D005C2AF2 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
+		DFA8D477178AA88D005C2AF2 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
+		DFA8D478178AA88D005C2AF2 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
+		DFA8D479178AA88D005C2AF2 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
+		DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DFA8D480178AA995005C2AF2 /* CADebugPrintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugPrintf.cpp; sourceTree = "<group>"; };
+		DFA8D481178AA995005C2AF2 /* CADebugPrintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugPrintf.h; sourceTree = "<group>"; };
+		DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AQPlayer.mm; sourceTree = "<group>"; };
+		DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AQRecorder.mm; sourceTree = "<group>"; };
+		DFA8D485178AAB07005C2AF2 /* AQRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQRecorder.h; sourceTree = "<group>"; };
+		DFA8D486178AAB07005C2AF2 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		DFA8D489178AB17E005C2AF2 /* MeterTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterTable.h; sourceTree = "<group>"; };
+		DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeterTable.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,11 +79,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8D47F178AA90A005C2AF2 /* QuartzCore.framework in Frameworks */,
+				DFA8D446178A72C3005C2AF2 /* Foundation.framework in Frameworks */,
+				DFA8D47D178AA8CA005C2AF2 /* CoreFoundation.framework in Frameworks */,
 				DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */,
 				DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */,
 				DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */,
 				DFA8D444178A72C3005C2AF2 /* UIKit.framework in Frameworks */,
-				DFA8D446178A72C3005C2AF2 /* Foundation.framework in Frameworks */,
 				DFA8D448178A72C3005C2AF2 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,9 +96,6 @@
 		DFA8D437178A72C3005C2AF2 = {
 			isa = PBXGroup;
 			children = (
-				DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */,
-				DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */,
-				DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */,
 				DFA8D449178A72C3005C2AF2 /* Speech Wave */,
 				DFA8D442178A72C3005C2AF2 /* Frameworks */,
 				DFA8D441178A72C3005C2AF2 /* Products */,
@@ -88,6 +113,11 @@
 		DFA8D442178A72C3005C2AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */,
+				DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */,
+				DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */,
+				DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */,
+				DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */,
 				DFA8D443178A72C3005C2AF2 /* UIKit.framework */,
 				DFA8D445178A72C3005C2AF2 /* Foundation.framework */,
 				DFA8D447178A72C3005C2AF2 /* CoreGraphics.framework */,
@@ -102,9 +132,9 @@
 				DFA8D453178A72C3005C2AF2 /* TDTAppDelegate.m */,
 				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
 				DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */,
-				DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */,
+				DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */,
 				DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */,
-				DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */,
+				DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */,
 				DFA8D44A178A72C3005C2AF2 /* Supporting Files */,
 			);
 			path = "Speech Wave";
@@ -113,6 +143,21 @@
 		DFA8D44A178A72C3005C2AF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */,
+				DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */,
+				DFA8D485178AAB07005C2AF2 /* AQRecorder.h */,
+				DFA8D486178AAB07005C2AF2 /* AQPlayer.h */,
+				DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */,
+				DFA8D476178AA88D005C2AF2 /* CADebugMacros.h */,
+				DFA8D477178AA88D005C2AF2 /* CAMath.h */,
+				DFA8D478178AA88D005C2AF2 /* CAStreamBasicDescription.cpp */,
+				DFA8D479178AA88D005C2AF2 /* CAStreamBasicDescription.h */,
+				DFA8D472178AA878005C2AF2 /* CAXException.cpp */,
+				DFA8D473178AA878005C2AF2 /* CAXException.h */,
+				DFA8D480178AA995005C2AF2 /* CADebugPrintf.cpp */,
+				DFA8D481178AA995005C2AF2 /* CADebugPrintf.h */,
+				DFA8D489178AB17E005C2AF2 /* MeterTable.h */,
+				DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */,
 				DFA8D44B178A72C3005C2AF2 /* Speech Wave-Info.plist */,
 				DFA8D44C178A72C3005C2AF2 /* InfoPlist.strings */,
 				DFA8D44F178A72C3005C2AF2 /* main.m */,
@@ -193,8 +238,15 @@
 			files = (
 				DFA8D450178A72C3005C2AF2 /* main.m in Sources */,
 				DFA8D454178A72C3005C2AF2 /* TDTAppDelegate.m in Sources */,
-				DFA8D460178A72C3005C2AF2 /* TDTViewController.m in Sources */,
-				DFA8D46E178A730F005C2AF2 /* TDTWaveView.m in Sources */,
+				DFA8D460178A72C3005C2AF2 /* TDTViewController.mm in Sources */,
+				DFA8D46E178A730F005C2AF2 /* TDTWaveView.mm in Sources */,
+				DFA8D474178AA878005C2AF2 /* CAXException.cpp in Sources */,
+				DFA8D47A178AA88D005C2AF2 /* CADebugMacros.cpp in Sources */,
+				DFA8D47B178AA88D005C2AF2 /* CAStreamBasicDescription.cpp in Sources */,
+				DFA8D482178AA995005C2AF2 /* CADebugPrintf.cpp in Sources */,
+				DFA8D487178AAB07005C2AF2 /* AQPlayer.mm in Sources */,
+				DFA8D488178AAB07005C2AF2 /* AQRecorder.mm in Sources */,
+				DFA8D48B178AB17E005C2AF2 /* MeterTable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +369,7 @@
 				DFA8D465178A72C3005C2AF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
