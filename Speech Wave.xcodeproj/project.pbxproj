@@ -18,6 +18,10 @@
 		DFA8D45A178A72C3005C2AF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */; };
 		DFA8D45D178A72C3005C2AF2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */; };
 		DFA8D460178A72C3005C2AF2 /* TDTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */; };
+		DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */; };
+		DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */; };
+		DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */; };
+		DFA8D46E178A730F005C2AF2 /* TDTWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,11 @@
 		DFA8D45C178A72C3005C2AF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTViewController.h; sourceTree = "<group>"; };
 		DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDTViewController.m; sourceTree = "<group>"; };
+		DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTWaveView.h; sourceTree = "<group>"; };
+		DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTWaveView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */,
+				DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */,
+				DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */,
 				DFA8D444178A72C3005C2AF2 /* UIKit.framework in Frameworks */,
 				DFA8D446178A72C3005C2AF2 /* Foundation.framework in Frameworks */,
 				DFA8D448178A72C3005C2AF2 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +68,9 @@
 		DFA8D437178A72C3005C2AF2 = {
 			isa = PBXGroup;
 			children = (
+				DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */,
+				DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */,
+				DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */,
 				DFA8D449178A72C3005C2AF2 /* Speech Wave */,
 				DFA8D442178A72C3005C2AF2 /* Frameworks */,
 				DFA8D441178A72C3005C2AF2 /* Products */,
@@ -88,6 +103,8 @@
 				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
 				DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */,
 				DFA8D45F178A72C3005C2AF2 /* TDTViewController.m */,
+				DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */,
+				DFA8D46D178A730F005C2AF2 /* TDTWaveView.m */,
 				DFA8D44A178A72C3005C2AF2 /* Supporting Files */,
 			);
 			path = "Speech Wave";
@@ -177,6 +194,7 @@
 				DFA8D450178A72C3005C2AF2 /* main.m in Sources */,
 				DFA8D454178A72C3005C2AF2 /* TDTAppDelegate.m in Sources */,
 				DFA8D460178A72C3005C2AF2 /* TDTViewController.m in Sources */,
+				DFA8D46E178A730F005C2AF2 /* TDTWaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
