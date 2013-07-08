@@ -9,10 +9,11 @@
 #import "TDTViewController.h"
 #import "TDTWaveView.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TDTViewController ()
 
-@property (nonatomic, weak) TDTWaveView* self_view;
+@property (nonatomic, strong) TDTWaveView* self_view;
 
 @end
 
@@ -23,7 +24,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor darkGrayColor];
-    _self_view = (TDTWaveView *) self.view;
+    _self_view = [[TDTWaveView alloc] initWithFrame:CGRectMake(-320, 174, 640, 200)];
+    [self.view addSubview:_self_view];
+    _self_view.backgroundColor = [UIColor clearColor];
     recorder = new AQRecorder();
 	player = new AQPlayer();
     OSStatus error = AudioSessionInitialize(NULL, NULL, interruptionListener, (__bridge void*)self);
@@ -65,6 +68,22 @@
 		// Hook the level meter up to the Audio Queue for the recorder
 		[_self_view setAq:recorder->Queue()];
 	}
+    [self animateWave];
+
+}
+
+- (void)animateWave {
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+        _self_view.transform = CGAffineTransformMakeTranslation(+_self_view.frame.size.width/2, 0);
+    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:2.0 animations:^{
+//            _self_view.transform = CGAffineTransformMakeTranslation(0, 0);
+//        } completion:^(BOOL finished) {
+//            [self animateWave];
+//        }];
+        _self_view.transform = CGAffineTransformMakeTranslation(0, 0);
+        //[self animateWave];
+    }];
 }
 
 char *OSTypeToStr(char *buf, OSType t)

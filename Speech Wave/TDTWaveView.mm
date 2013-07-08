@@ -23,7 +23,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		_refreshHz = 1. / 30.;
+		_refreshHz = 1. / 15.;
 		_channelNumbers = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:0], nil];
         _chan_lvls = (AudioQueueLevelMeterState*)malloc(sizeof(AudioQueueLevelMeterState) * [_channelNumbers count]);
         _meterTable = new MeterTable(kMinDBvalue);
@@ -33,7 +33,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [super initWithCoder:coder]) {
-        _refreshHz = 1. / 30.;
+        _refreshHz = 1. / 15.;
 		_channelNumbers = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:0], nil];
         _chan_lvls = (AudioQueueLevelMeterState*)malloc(sizeof(AudioQueueLevelMeterState) * [_channelNumbers count]);
         _meterTable = new MeterTable(kMinDBvalue);
@@ -149,7 +149,7 @@
         if (_chan_lvls)
         {
            self.yc = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 150);
-            self.yc < 30 ? self.yc /= 3 : self.yc++;
+           //self.yc < 30 ? self.yc /= 3 : self.yc++;
            // NSLog(@"%f",self.yc);
            [self setNeedsDisplay];
            success = YES;
@@ -175,50 +175,34 @@ bail:
 //        flag = YES;
 //    }
     //self.yc = RAND_FROM_TO(0, 120);
+    const CGFloat strokeColour1[4] = {1.0,.75,1.0,1.0};
     float tempY = self.yc;
     float w = 0;
     float y = rect.size.height;
     float width = rect.size.width;
-    int cycles = 3 + arc4random_uniform(6);
+    int cycles = 4 + arc4random_uniform(5);
+    if (cycles%2==0) cycles++;
     self.x = width/cycles;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGMutablePathRef path = CGPathCreateMutable();
-    CGContextSetLineWidth(context, .15);
-    //CGPathMoveToPoint(path, NULL, w,y/2);
-    //CGPathAddLineToPoint(path, NULL, width, y/2);
-    //NSLog(@"Draw");
-    int count = 0;
-//    if (cycles % 2 != 0) {
-//        cycles++;
-//    }
-    while (w <= width) {
-        count++;
-        int n = cycles - abs((cycles/2) - count);
-        self.yc = n*2*tempY/(cycles);
-        CGPathMoveToPoint(path, NULL, w,y/2);
-        CGPathAddQuadCurveToPoint(path, NULL, w+self.x/4, y/2 - self.yc, w+self.x/2, y/2);
-        CGPathAddQuadCurveToPoint(path, NULL, w+3*self.x/4, y/2 + self.yc, w+self.x, y/2);
-        CGContextAddPath(context, path);
-        CGContextDrawPath(context, kCGPathStroke);
-        w+=self.x;
-    }
-    cycles = 3 + arc4random_uniform(6);
-    self.x = width/cycles;
-    count = 0;
-    w = - 15;
-    CGFloat strokeColour1[4] = {1.0,1.0,1.0,1.0};
+    CGContextSetLineWidth(context, .5);
     CGContextSetStrokeColor(context,strokeColour1);
+   // CGContextSetFillColor(context, strokeColour1);
+    int count = 0;
+    int c_by_2 = cycles/2;
     while (w <= width) {
-        count++;
-        int n = cycles - abs((cycles/2) - count);
-        self.yc = n*2*tempY/(cycles);
+        float n = cycles - abs(c_by_2 - count);
+        self.yc = n*n*n*tempY/(cycles*cycles*cycles);
         CGPathMoveToPoint(path, NULL, w,y/2);
         CGPathAddQuadCurveToPoint(path, NULL, w+self.x/4, y/2 - self.yc, w+self.x/2, y/2);
         CGPathAddQuadCurveToPoint(path, NULL, w+3*self.x/4, y/2 + self.yc, w+self.x, y/2);
-        CGContextAddPath(context, path);
-        CGContextDrawPath(context, kCGPathStroke);
+        
         w+=self.x;
+        count++;
     }
+    CGContextAddPath(context, path);
+    CGContextDrawPath(context, kCGPathStroke);
+    
 }
 
 @end
