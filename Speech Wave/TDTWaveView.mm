@@ -5,7 +5,6 @@
 //  Created by Amit Chowdhary on 08/07/13.
 //  Copyright (c) 2013 Amit Chowdhary. All rights reserved.
 //
-#define RAND_FROM_TO(min,max) (min + arc4random_uniform(max + 1))
 
 #import "TDTWaveView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -148,8 +147,8 @@
 		
         if (_chan_lvls)
         {
-           self.yc = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 150);
-           //self.yc < 30 ? self.yc /= 3 : self.yc++;
+           self.yc = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 200);
+           self.yc < 40 ? self.yc /= 2 : self.yc++;
            // NSLog(@"%f",self.yc);
            [self setNeedsDisplay];
            success = YES;
@@ -166,7 +165,6 @@ bail:
 	}
 }
 
-
 - (void)drawRect:(CGRect)rect
 {
 //    static BOOL flag = NO;
@@ -180,7 +178,7 @@ bail:
     float w = 0;
     float y = rect.size.height;
     float width = rect.size.width;
-    int cycles = 4 + arc4random_uniform(5);
+    int cycles = 6 + arc4random_uniform(5);
     if (cycles%2==0) cycles++;
     self.x = width/cycles;
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -202,7 +200,6 @@ bail:
     }
     CGContextAddPath(context, path);
     CGContextDrawPath(context, kCGPathStroke);
-    
 }
 
 @end

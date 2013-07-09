@@ -73,7 +73,7 @@
 }
 
 - (void)animateWave {
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
         _self_view.transform = CGAffineTransformMakeTranslation(+_self_view.frame.size.width/2, 0);
     } completion:^(BOOL finished) {
 //        [UIView animateWithDuration:2.0 animations:^{
