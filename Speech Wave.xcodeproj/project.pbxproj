@@ -17,7 +17,6 @@
 		DFA8D458178A72C3005C2AF2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D457178A72C3005C2AF2 /* Default@2x.png */; };
 		DFA8D45A178A72C3005C2AF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */; };
 		DFA8D45D178A72C3005C2AF2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */; };
-		DFA8D460178A72C3005C2AF2 /* TDTViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */; };
 		DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */; };
 		DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */; };
 		DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */; };
@@ -31,6 +30,12 @@
 		DFA8D487178AAB07005C2AF2 /* AQPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */; };
 		DFA8D488178AAB07005C2AF2 /* AQRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */; };
 		DFA8D48B178AB17E005C2AF2 /* MeterTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */; };
+		DFA8D492178BE3AD005C2AF2 /* TDTAudioWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */; };
+		DFA8D49C178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D49B178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm */; };
+		DFA8D49F178BF183005C2AF2 /* press-to-speak-button.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D49D178BF183005C2AF2 /* press-to-speak-button.png */; };
+		DFA8D4A0178BF183005C2AF2 /* press-to-speak-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */; };
+		DFA8D4A3178BF25D005C2AF2 /* press-to-speak-button-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */; };
+		DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +53,6 @@
 		DFA8D457178A72C3005C2AF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DFA8D45C178A72C3005C2AF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTViewController.h; sourceTree = "<group>"; };
-		DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTViewController.mm; sourceTree = "<group>"; };
 		DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -72,6 +75,14 @@
 		DFA8D486178AAB07005C2AF2 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
 		DFA8D489178AB17E005C2AF2 /* MeterTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterTable.h; sourceTree = "<group>"; };
 		DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeterTable.cpp; sourceTree = "<group>"; };
+		DFA8D490178BE3AD005C2AF2 /* TDTAudioWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTAudioWaveView.h; sourceTree = "<group>"; };
+		DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTAudioWaveView.m; sourceTree = "<group>"; };
+		DFA8D49A178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTPushToTalkRecorderViewController.h; sourceTree = "<group>"; };
+		DFA8D49B178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTPushToTalkRecorderViewController.mm; sourceTree = "<group>"; };
+		DFA8D49D178BF183005C2AF2 /* press-to-speak-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button.png"; sourceTree = "<group>"; };
+		DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button@2x.png"; sourceTree = "<group>"; };
+		DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted.png"; sourceTree = "<group>"; };
+		DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,10 +142,12 @@
 				DFA8D452178A72C3005C2AF2 /* TDTAppDelegate.h */,
 				DFA8D453178A72C3005C2AF2 /* TDTAppDelegate.m */,
 				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
-				DFA8D45E178A72C3005C2AF2 /* TDTViewController.h */,
-				DFA8D45F178A72C3005C2AF2 /* TDTViewController.mm */,
 				DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */,
 				DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */,
+				DFA8D490178BE3AD005C2AF2 /* TDTAudioWaveView.h */,
+				DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */,
+				DFA8D49A178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.h */,
+				DFA8D49B178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm */,
 				DFA8D44A178A72C3005C2AF2 /* Supporting Files */,
 			);
 			path = "Speech Wave";
@@ -143,6 +156,10 @@
 		DFA8D44A178A72C3005C2AF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D49D178BF183005C2AF2 /* press-to-speak-button.png */,
+				DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */,
+				DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */,
+				DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */,
 				DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */,
 				DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */,
 				DFA8D485178AAB07005C2AF2 /* AQRecorder.h */,
@@ -226,6 +243,10 @@
 				DFA8D458178A72C3005C2AF2 /* Default@2x.png in Resources */,
 				DFA8D45A178A72C3005C2AF2 /* Default-568h@2x.png in Resources */,
 				DFA8D45D178A72C3005C2AF2 /* MainStoryboard.storyboard in Resources */,
+				DFA8D49F178BF183005C2AF2 /* press-to-speak-button.png in Resources */,
+				DFA8D4A0178BF183005C2AF2 /* press-to-speak-button@2x.png in Resources */,
+				DFA8D4A3178BF25D005C2AF2 /* press-to-speak-button-highlighted.png in Resources */,
+				DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +259,6 @@
 			files = (
 				DFA8D450178A72C3005C2AF2 /* main.m in Sources */,
 				DFA8D454178A72C3005C2AF2 /* TDTAppDelegate.m in Sources */,
-				DFA8D460178A72C3005C2AF2 /* TDTViewController.mm in Sources */,
 				DFA8D46E178A730F005C2AF2 /* TDTWaveView.mm in Sources */,
 				DFA8D474178AA878005C2AF2 /* CAXException.cpp in Sources */,
 				DFA8D47A178AA88D005C2AF2 /* CADebugMacros.cpp in Sources */,
@@ -247,6 +267,8 @@
 				DFA8D487178AAB07005C2AF2 /* AQPlayer.mm in Sources */,
 				DFA8D488178AAB07005C2AF2 /* AQRecorder.mm in Sources */,
 				DFA8D48B178AB17E005C2AF2 /* MeterTable.cpp in Sources */,
+				DFA8D492178BE3AD005C2AF2 /* TDTAudioWaveView.m in Sources */,
+				DFA8D49C178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

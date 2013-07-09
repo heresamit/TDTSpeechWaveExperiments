@@ -162,7 +162,7 @@ void AQRecorder::SetupAudioFormat(UInt32 inFormatID)
 	XThrowIfError(AudioSessionGetProperty(	kAudioSessionProperty_CurrentHardwareSampleRate,
 										&size, 
 										&mRecordFormat.mSampleRate), "couldn't get hardware sample rate");
-
+    //NSLog(@"%f",mRecordFormat.mSampleRate);
 	size = sizeof(mRecordFormat.mChannelsPerFrame);
 	XThrowIfError(AudioSessionGetProperty(	kAudioSessionProperty_CurrentHardwareInputNumberChannels, 
 										&size, 
@@ -177,6 +177,8 @@ void AQRecorder::SetupAudioFormat(UInt32 inFormatID)
 		mRecordFormat.mBytesPerPacket = mRecordFormat.mBytesPerFrame = (mRecordFormat.mBitsPerChannel / 8) * mRecordFormat.mChannelsPerFrame;
 		mRecordFormat.mFramesPerPacket = 1;
 	}
+    
+    
 }
 
 void AQRecorder::StartRecord(CFStringRef inRecordFile)
