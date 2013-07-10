@@ -8,8 +8,10 @@
 #import "TDTAudioWaveView.h"
 #import "TDTPushToTalkRecorderViewController.h"
 #import "AQRecorder.h"
+#import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MeterTable.h"
+#import <CoreMedia/CMTime.h>
 
 const float _refreshHz = 1./30.;
 
@@ -30,6 +32,8 @@ const float _refreshHz = 1./30.;
 @property (nonatomic) AudioQueueRef  aq;
 @property (nonatomic, strong) NSTimer* updateTimer;
 @property (nonatomic, strong) UIView* containerView;
+@property(nonatomic, strong) AVAudioPlayer *meinPlayer;
+@property(nonatomic, strong) NSDate *start;
 
 @end
 
@@ -128,8 +132,8 @@ const float _refreshHz = 1./30.;
 		error = AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(category), &category);
 		if (error) printf("couldn't set audio category!");
         
-        Float64 preferredSampleRate = 11025.0;
-        AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareSampleRate, sizeof(preferredSampleRate), &preferredSampleRate);
+//        Float64 preferredSampleRate = 11025.0;
+//        AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareSampleRate, sizeof(preferredSampleRate), &preferredSampleRate);
 
 		error = AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, propListener, (__bridge void*) self);
 		if (error) printf("ERROR ADDING AUDIO SESSION PROP LISTENER! %d\n", (int)error);
@@ -325,11 +329,13 @@ char *OSTypeToStr(char *buf, OSType t)
 - (void)stopRecording
 {
     self.titleLabel.text = @"Press and Hold Bubble.";
-	[self setAq:nil];
 	recorder->StopRecord();
+    NSLog(@"%@",[_start timeIntervalSinceNow]);
+    [self setAq:nil];
 	recordFilePath = (__bridge CFStringRef)[NSTemporaryDirectory() stringByAppendingPathComponent: @"recordedFile.caf"];
 	self.pressToSpeakButton.userInteractionEnabled = YES;
     [self sendAudioDataToDelegate];
+    [self compressAudioToM4A];
     AudioSessionSetActive(false);
 }
 
@@ -337,6 +343,111 @@ char *OSTypeToStr(char *buf, OSType t)
 {
     NSData *audioData = [NSData dataWithContentsOfFile:(__bridge NSString*)recordFilePath];
     NSLog(@"%lu",(unsigned long)audioData.length);
+}
+
+- (void)compressAudioToM4A {
+    NSLog(@"Compressing");
+    
+    NSString *exportPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"out.m4a"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:exportPath]) {
+        NSLog(@"%@",exportPath);
+        [fileManager removeItemAtPath:exportPath error:NULL];
+        //[fileManager createFileAtPath:exportPath contents:nil attributes:nil];
+    }
+    NSURL *exportURL = [NSURL fileURLWithPath:exportPath];
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:(__bridge NSString*)recordFilePath] options:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                                                        [ NSNumber numberWithInt: kAudioFormatLinearPCM], AVFormatIDKey,
+                                                                                                                        [ NSNumber numberWithInt: 2 ], AVNumberOfChannelsKey,
+                                                                                                                        [ NSNumber numberWithFloat: 11025.0 ], AVSampleRateKey,
+                                                                                                                        [ NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
+                                                                                                                        nil]];
+    CMTime audioDuration = asset.duration;
+    NSLog(@"seconds = %f", CMTimeGetSeconds(audioDuration));
+    // reader
+    NSError *readerError = nil;
+    AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:asset
+                                                           error:&readerError];
+    AVAssetTrack *track = [[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+    AVAssetReaderTrackOutput *readerOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:track outputSettings:nil];
+    [reader addOutput:readerOutput];
+    // writer
+    NSError *writerError = nil;
+    AVAssetWriter *writer = [[AVAssetWriter alloc] initWithURL:exportURL fileType:AVFileTypeAppleM4A error:&writerError];
+    AudioChannelLayout channelLayout;
+    memset(&channelLayout, 0, sizeof(AudioChannelLayout));
+    channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
+    // use different values to affect the downsampling/compression
+    NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                    [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
+                                    [NSNumber numberWithInt:2], AVNumberOfChannelsKey,
+                                    [NSNumber numberWithInt:64000], AVEncoderBitRateKey,
+                                    [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
+                                    nil];
+    AVAssetWriterInput *writerInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeAudio outputSettings:outputSettings];
+    [writerInput setExpectsMediaDataInRealTime:NO];
+    [writer addInput:writerInput];
+    
+    [writer startWriting];
+    [writer startSessionAtSourceTime:kCMTimeZero];
+    
+    [reader startReading];
+    dispatch_queue_t mediaInputQueue = dispatch_queue_create("mediaInputQueue", NULL);
+    [writerInput requestMediaDataWhenReadyOnQueue:mediaInputQueue usingBlock:^{
+        
+       // NSLog(@"Asset Writer ready : %d", writerInput.readyForMoreMediaData);
+        while (writerInput.readyForMoreMediaData) {
+            CMSampleBufferRef nextBuffer;
+            if ([reader status] == AVAssetReaderStatusReading && (nextBuffer = [readerOutput copyNextSampleBuffer])) {
+                if (nextBuffer) {
+                    [writerInput appendSampleBuffer:nextBuffer];
+                }
+            } else {
+                [writerInput markAsFinished];
+                
+                switch ([reader status]) {
+                    case AVAssetReaderStatusReading:
+                        break;
+                    case AVAssetReaderStatusFailed:
+                        [writer cancelWriting];
+                        break;
+                    case AVAssetReaderStatusCompleted:
+                        NSLog(@"Writer completed");
+                        [writer endSessionAtSourceTime:asset.duration];
+                        [writer finishWriting];
+                        NSData *data = [NSData dataWithContentsOfFile:exportPath];
+                        NSLog(@"%lu",(unsigned long)data.length);
+                         NSError *error = nil;
+                        self.titleLabel.text = @"Playing";
+                        _meinPlayer = [[AVAudioPlayer alloc]
+                                       initWithContentsOfURL:[NSURL fileURLWithPath:exportPath]
+                                       error:&error];
+                        _meinPlayer.delegate = self;
+                        [_meinPlayer prepareToPlay];
+                        AVAudioSession *session = [AVAudioSession sharedInstance];
+                        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+                        [session setActive:YES error:nil];
+                        [_meinPlayer play];
+                        break;
+                }
+                break;
+            }
+        }
+    }];
+    self.titleLabel.text = @"Processing";
+    NSLog(@"OUTSIDE");
+   
+    
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    if (!flag)
+        NSLog(@"Failed");
+    else
+        NSLog(@"Success");
+    
+    self.titleLabel.text = @"Press and Hold Button";
 }
 
 @end

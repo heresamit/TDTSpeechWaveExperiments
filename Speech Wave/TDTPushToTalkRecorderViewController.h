@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface TDTPushToTalkRecorderViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface TDTPushToTalkRecorderViewController : UIViewController <UIGestureRecognizerDelegate, AVAudioPlayerDelegate>
 
 @end
 

@@ -35,6 +35,7 @@
 		DFA8D4A0178BF183005C2AF2 /* press-to-speak-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */; };
 		DFA8D4A3178BF25D005C2AF2 /* press-to-speak-button-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */; };
 		DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */; };
+		DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button@2x.png"; sourceTree = "<group>"; };
 		DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted.png"; sourceTree = "<group>"; };
 		DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted@2x.png"; sourceTree = "<group>"; };
+		DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */,
 				DFA8D47F178AA90A005C2AF2 /* QuartzCore.framework in Frameworks */,
 				DFA8D446178A72C3005C2AF2 /* Foundation.framework in Frameworks */,
 				DFA8D47D178AA8CA005C2AF2 /* CoreFoundation.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		DFA8D437178A72C3005C2AF2 = {
 			isa = PBXGroup;
 			children = (
+				DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */,
 				DFA8D449178A72C3005C2AF2 /* Speech Wave */,
 				DFA8D442178A72C3005C2AF2 /* Frameworks */,
 				DFA8D441178A72C3005C2AF2 /* Products */,
@@ -164,10 +168,10 @@
 		DFA8D4AE178D1B9A005C2AF2 /* CoreAudio Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */,
 				DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */,
 				DFA8D485178AAB07005C2AF2 /* AQRecorder.h */,
 				DFA8D486178AAB07005C2AF2 /* AQPlayer.h */,
+				DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */,
 				DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */,
 				DFA8D476178AA88D005C2AF2 /* CADebugMacros.h */,
 				DFA8D477178AA88D005C2AF2 /* CAMath.h */,
