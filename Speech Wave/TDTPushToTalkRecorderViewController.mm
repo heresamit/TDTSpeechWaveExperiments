@@ -39,7 +39,6 @@ const float _refreshHz = 1./30.;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
     }
     return self;
 }
@@ -62,7 +61,6 @@ const float _refreshHz = 1./30.;
 		try {
 			UInt32 val = 1;
 			XThrowIfError(AudioQueueSetProperty(_aq, kAudioQueueProperty_EnableLevelMetering, &val, sizeof(UInt32)), "couldn't enable metering");
-			
 			// now check the number of channels in the new queue, we will need to reallocate if this has changed
 			CAStreamBasicDescription queueFormat;
 			UInt32 data_sz = sizeof(queueFormat);
@@ -163,17 +161,16 @@ const float _refreshHz = 1./30.;
 
 - (void)startRecording
 {
+    AudioSessionSetActive(true);
     self.titleLabel.text = @"Recording...";
-    if (recorder->IsRunning()) // If we are currently recording, stop and save the file.
+    if (recorder->IsRunning()) 
 	{
 		[self stopRecording];
 	}
-	else // If we're not recording, start.
+	else
 	{
-        // Start the recorder
 		recorder->StartRecord(CFSTR("recordedFile.caf"));
 		[self setFileDescriptionForFormat:recorder->DataFormat() withName:@"Recorded File"];
-		// Hook the level meter up to the Audio Queue for the recorder
 		[self setAq:recorder->Queue()];
 	}
 }
@@ -181,7 +178,6 @@ const float _refreshHz = 1./30.;
 - (void)setUpViews {
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 230)];
     self.containerView.clipsToBounds = YES;
-    //self.containerView.backgroundColor = [UIColor blueColor];
     self.containerView.userInteractionEnabled = YES;
     [self.view addSubview:self.containerView];
     
@@ -205,18 +201,6 @@ const float _refreshHz = 1./30.;
     [self.pressToSpeakButton addGestureRecognizer:lpgr];
     self.pressToSpeakButton.userInteractionEnabled = YES;
     [self.containerView addSubview:self.pressToSpeakButton];
-}
-
-- (void)userBeganButtonPress:(id)sender
-{
-     NSLog(@"Started");
-    [self startRecording];
-}
-
-- (void)userEndedButtonPress
-{
-    NSLog(@"Stopped");
-    [self stopRecording];
 }
 
 - (void)userDidLongPressSpeakButton:(UILongPressGestureRecognizer *)gestureRecognizer
@@ -346,14 +330,12 @@ char *OSTypeToStr(char *buf, OSType t)
 - (void)stopRecording
 {
     self.titleLabel.text = @"Press and Hold Bubble.";
-	// Disconnect our level meter from the audio queue
 	[self setAq:nil];
 	recorder->StopRecord();
-	// now create a new queue for the recorded file
 	recordFilePath = (__bridge CFStringRef)[NSTemporaryDirectory() stringByAppendingPathComponent: @"recordedFile.caf"];
-	// Set the button's state back to "record"
 	self.pressToSpeakButton.userInteractionEnabled = YES;
     [self sendAudioDataToDelegate];
+    AudioSessionSetActive(false);
 }
 
 - (void)sendAudioDataToDelegate
