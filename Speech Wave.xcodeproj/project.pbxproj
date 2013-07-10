@@ -20,7 +20,6 @@
 		DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */; };
 		DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */; };
 		DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */; };
-		DFA8D46E178A730F005C2AF2 /* TDTWaveView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */; };
 		DFA8D474178AA878005C2AF2 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D472178AA878005C2AF2 /* CAXException.cpp */; };
 		DFA8D47A178AA88D005C2AF2 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */; };
 		DFA8D47B178AA88D005C2AF2 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D478178AA88D005C2AF2 /* CAStreamBasicDescription.cpp */; };
@@ -56,8 +55,6 @@
 		DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTWaveView.h; sourceTree = "<group>"; };
-		DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TDTWaveView.mm; sourceTree = "<group>"; };
 		DFA8D472178AA878005C2AF2 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
 		DFA8D473178AA878005C2AF2 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
 		DFA8D475178AA88D005C2AF2 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugMacros.cpp; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 				DFA8D452178A72C3005C2AF2 /* TDTAppDelegate.h */,
 				DFA8D453178A72C3005C2AF2 /* TDTAppDelegate.m */,
 				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
-				DFA8D46C178A730F005C2AF2 /* TDTWaveView.h */,
-				DFA8D46D178A730F005C2AF2 /* TDTWaveView.mm */,
 				DFA8D490178BE3AD005C2AF2 /* TDTAudioWaveView.h */,
 				DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */,
 				DFA8D49A178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.h */,
@@ -259,7 +254,6 @@
 			files = (
 				DFA8D450178A72C3005C2AF2 /* main.m in Sources */,
 				DFA8D454178A72C3005C2AF2 /* TDTAppDelegate.m in Sources */,
-				DFA8D46E178A730F005C2AF2 /* TDTWaveView.mm in Sources */,
 				DFA8D474178AA878005C2AF2 /* CAXException.cpp in Sources */,
 				DFA8D47A178AA88D005C2AF2 /* CADebugMacros.cpp in Sources */,
 				DFA8D47B178AA88D005C2AF2 /* CAStreamBasicDescription.cpp in Sources */,
