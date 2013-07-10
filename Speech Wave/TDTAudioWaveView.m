@@ -8,12 +8,6 @@
 
 #import "TDTAudioWaveView.h"
 
-@interface TDTAudioWaveView()
-
-@property (nonatomic) float x;
-
-@end
-
 @implementation TDTAudioWaveView
 
 - (void)drawRect:(CGRect)rect
@@ -27,8 +21,8 @@
     float y = rect.size.height;
     float width = rect.size.width;
     int cycles = 6 + arc4random_uniform(5);
-    if (cycles%2==0) cycles++;
-    self.x = width/cycles;
+    if (cycles % 2 == 0) cycles++;
+    float x = width/cycles;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGMutablePathRef path = CGPathCreateMutable();
     CGContextSetLineWidth(context, .35);
@@ -39,9 +33,9 @@
         float n = cycles - abs(cyclesByTwo - count);
         self.maxWaveHeight = n*n*n*tempY/(cycles*cycles*cycles);
         CGPathMoveToPoint(path, NULL, w,y/2);
-        CGPathAddQuadCurveToPoint(path, NULL, w+self.x/4, y/2 - self.maxWaveHeight, w+self.x/2, y/2);
-        CGPathAddQuadCurveToPoint(path, NULL, w+3*self.x/4, y/2 + self.maxWaveHeight, w+self.x, y/2);
-        w+=self.x;
+        CGPathAddQuadCurveToPoint(path, NULL, w + x/4, y/2 - self.maxWaveHeight, w + x/2, y/2);
+        CGPathAddQuadCurveToPoint(path, NULL, w + 3*x/4, y/2 + self.maxWaveHeight, w + x, y/2);
+        w+=x;
         count++;
     }
     CGContextAddPath(context, path);

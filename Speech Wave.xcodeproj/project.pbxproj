@@ -136,6 +136,7 @@
 		DFA8D449178A72C3005C2AF2 /* Speech Wave */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D4AE178D1B9A005C2AF2 /* CoreAudio Helpers */,
 				DFA8D452178A72C3005C2AF2 /* TDTAppDelegate.h */,
 				DFA8D453178A72C3005C2AF2 /* TDTAppDelegate.m */,
 				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
@@ -151,10 +152,18 @@
 		DFA8D44A178A72C3005C2AF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DFA8D49D178BF183005C2AF2 /* press-to-speak-button.png */,
-				DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */,
-				DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */,
-				DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */,
+				DFA8D4AF178D1BE7005C2AF2 /* Images */,
+				DFA8D44B178A72C3005C2AF2 /* Speech Wave-Info.plist */,
+				DFA8D44C178A72C3005C2AF2 /* InfoPlist.strings */,
+				DFA8D44F178A72C3005C2AF2 /* main.m */,
+				DFA8D451178A72C3005C2AF2 /* Speech Wave-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFA8D4AE178D1B9A005C2AF2 /* CoreAudio Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				DFA8D483178AAB07005C2AF2 /* AQPlayer.mm */,
 				DFA8D484178AAB07005C2AF2 /* AQRecorder.mm */,
 				DFA8D485178AAB07005C2AF2 /* AQRecorder.h */,
@@ -170,15 +179,22 @@
 				DFA8D481178AA995005C2AF2 /* CADebugPrintf.h */,
 				DFA8D489178AB17E005C2AF2 /* MeterTable.h */,
 				DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */,
-				DFA8D44B178A72C3005C2AF2 /* Speech Wave-Info.plist */,
-				DFA8D44C178A72C3005C2AF2 /* InfoPlist.strings */,
-				DFA8D44F178A72C3005C2AF2 /* main.m */,
-				DFA8D451178A72C3005C2AF2 /* Speech Wave-Prefix.pch */,
+			);
+			name = "CoreAudio Helpers";
+			sourceTree = "<group>";
+		};
+		DFA8D4AF178D1BE7005C2AF2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DFA8D49D178BF183005C2AF2 /* press-to-speak-button.png */,
+				DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */,
+				DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */,
+				DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */,
 				DFA8D455178A72C3005C2AF2 /* Default.png */,
 				DFA8D457178A72C3005C2AF2 /* Default@2x.png */,
 				DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

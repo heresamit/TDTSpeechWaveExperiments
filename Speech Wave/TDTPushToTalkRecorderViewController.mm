@@ -238,11 +238,6 @@ const float _refreshHz = 1./30.;
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark AudioSession listeners
 void interruptionListener(void *inClientData,UInt32 inInterruptionState)
 {
