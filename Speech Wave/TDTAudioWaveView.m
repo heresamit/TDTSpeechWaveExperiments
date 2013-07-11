@@ -33,12 +33,13 @@
         case 0:
         case 1:
         case 3:
+        case 4:
         {
             //    if (self.maxWaveHeight < 15 && self.maxWaveHeight > 4) {
             //        self.maxWaveHeight = 4;
             //    }
             if (self.maxWaveHeight < 10) self.maxWaveHeight = 7;
-            if (self.typeOfView == 3) {
+            if (self.typeOfView == 3 || self.typeOfView == 4) {
                 CGContextSetLineWidth(context, 2);
             }
             CGContextSetStrokeColor(context,strokeColour1);
@@ -75,9 +76,31 @@
             CGContextAddPath(context, path);
             break;
         }
+        case 5:
+        {
+            CGContextSetStrokeColor(context,strokeColour1);
+            int cycles = 18;
+            float x = width/cycles;
+            int cyclesByFour = cycles/4;
+            float n;
+            while (w <= width) {
+                n = cycles - abs(cyclesByFour - count);
+                self.maxWaveHeight = n*n*n*tempY/(cycles*cycles*cycles);
+                CGPathMoveToPoint(path, NULL, w,y/2);
+                CGPathAddQuadCurveToPoint(path, NULL, w + x/4, y/2 - self.maxWaveHeight, w + x/2, y/2);
+                CGPathAddQuadCurveToPoint(path, NULL, w + 3*x/4, y/2 + self.maxWaveHeight, w + x, y/2);
+                w+=x;
+                count++;
+                count %= 9;
+            }
+
+            CGContextAddPath(context, path);
+            break;
+        }
         default:
             break;
     }
+    
     CGContextDrawPath(context, kCGPathStroke);
 }
 

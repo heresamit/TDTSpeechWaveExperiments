@@ -195,7 +195,15 @@ const float _refreshHz = 1./30.;
             [self.containerView addSubview:self.audioWaveView];
             [self animateWave];
             break;
-            
+        case 5:
+            [self.audioWaveView removeFromSuperview];
+            self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-500, 30, 1000, 150)
+                                                                    type:self.waveViewPicker.selectedSegmentIndex];
+            self.audioWaveView.backgroundColor = [UIColor clearColor];
+            self.audioWaveView.maxWaveHeight = 4;
+            [self.containerView addSubview:self.audioWaveView];
+            [self animateWave];
+            break;
         default:
             [self.audioWaveView removeFromSuperview];
             self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(0, 30, 250, 150)
@@ -264,9 +272,9 @@ const float _refreshHz = 1./30.;
     [self animateWave];
 }
 
-- (void)animateWave {
-    //NSLog(@"animating");
-    [UIView animateWithDuration:.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+- (void)animateWave
+{
+    [UIView animateWithDuration:self.waveViewChosen == 5 ? 3:.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
         self.audioWaveView.transform = CGAffineTransformMakeTranslation(self.audioWaveView.frame.size.width/2, 0);
     } completion:^(BOOL finished) {
         self.audioWaveView.transform = CGAffineTransformMakeTranslation(0, 0);
