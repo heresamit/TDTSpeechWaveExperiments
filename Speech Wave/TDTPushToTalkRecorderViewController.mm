@@ -5,7 +5,7 @@
 //  Created by Amit Chowdhary on 09/07/13.
 //  Copyright (c) 2013 Amit Chowdhary. All rights reserved.
 //
-#import "TDTAudioWaveView.h"
+#import "TDTaudioWaveView.h"
 #import "TDTPushToTalkRecorderViewController.h"
 #import "AQRecorder.h"
 #import <AVFoundation/AVFoundation.h>
@@ -26,14 +26,15 @@ const float _refreshHz = 1./30.;
 }
 
 @property (nonatomic, copy) NSArray *channelNumbers;
-@property (nonatomic, strong) TDTAudioWaveView* audioWaveView;
+@property (nonatomic, strong) TDTAudioWaveView *audioWaveViewType1;
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UIImageView* pressToSpeakButton;
 @property (nonatomic) AudioQueueRef  aq;
 @property (nonatomic, strong) NSTimer* updateTimer;
 @property (nonatomic, strong) UIView* containerView;
-@property(nonatomic, strong) AVAudioPlayer *meinPlayer;
-@property(nonatomic, strong) NSDate *start;
+@property (nonatomic, strong) AVAudioPlayer *meinPlayer;
+@property (nonatomic, strong) NSDate *start;
+@property (nonatomic) int waveViewChosen;
 
 @end
 
@@ -55,7 +56,7 @@ const float _refreshHz = 1./30.;
 		_updateTimer = [NSTimer
 						scheduledTimerWithTimeInterval:_refreshHz
 						target:self
-						selector:@selector(refreshAudioWaveView)
+						selector:@selector(refreshaudioWaveViewType1)
 						userInfo:nil
 						repeats:YES
 						];
@@ -88,12 +89,12 @@ const float _refreshHz = 1./30.;
 	}
     else if (v == NULL){
         if (_updateTimer) [_updateTimer invalidate];
-        self.audioWaveView.maxWaveHeight = 2;
-        [self.audioWaveView setNeedsDisplay];
+        self.audioWaveViewType1.maxWaveHeight = 2;
+        [self.audioWaveViewType1 setNeedsDisplay];
     }
 }
 
-- (void)refreshAudioWaveView
+- (void)refreshaudioWaveViewType1
 {
     BOOL success = NO;
     UInt32 data_sz = sizeof(AudioQueueLevelMeterState) * [_channelNumbers count];
@@ -115,9 +116,9 @@ const float _refreshHz = 1./30.;
     }
     if (_chan_lvls)
     {
-        self.audioWaveView.maxWaveHeight = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 200);;
-        //NSLog(@"Audio Level: %f",self.audioWaveView.maxWaveHeight);
-        [self.audioWaveView setNeedsDisplay];
+        self.audioWaveViewType1.maxWaveHeight = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 200);;
+        //NSLog(@"Audio Level: %f",self.audioWaveViewType1.maxWaveHeight);
+        [self.audioWaveViewType1 setNeedsDisplay];
         success = YES;
     }
 }
@@ -179,16 +180,29 @@ const float _refreshHz = 1./30.;
 	}
 }
 
+- (void)viewChoiceChanged
+{
+    self.waveViewChosen = self.waveViewPicker.selectedSegmentIndex;
+    NSLog(@"Selected Segment = %d",self.waveViewChosen);
+    if (self.waveViewChosen) {
+        [self.audioWaveViewType1 removeFromSuperview];
+        //self.audioWaveViewType1 = nil;
+    }
+}
+
 - (void)setUpViews {
+    self.waveViewChosen = 0;
+    [self.waveViewPicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
+    
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 230)];
     self.containerView.clipsToBounds = YES;
     self.containerView.userInteractionEnabled = YES;
     [self.view addSubview:self.containerView];
     
-    self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150)];
-    self.audioWaveView.backgroundColor = [UIColor clearColor];
-    self.audioWaveView.maxWaveHeight = 4;
-    [self.containerView addSubview:self.audioWaveView];
+    self.audioWaveViewType1 = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150)];
+    self.audioWaveViewType1.backgroundColor = [UIColor clearColor];
+    self.audioWaveViewType1.maxWaveHeight = 4;
+    [self.containerView addSubview:self.audioWaveViewType1];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     self.titleLabel.text = @"Press and Hold Bubble.";
@@ -236,9 +250,9 @@ const float _refreshHz = 1./30.;
 
 - (void)animateWave {
     [UIView animateWithDuration:.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
-        self.audioWaveView.transform = CGAffineTransformMakeTranslation(self.audioWaveView.frame.size.width/2, 0);
+        self.audioWaveViewType1.transform = CGAffineTransformMakeTranslation(self.audioWaveViewType1.frame.size.width/2, 0);
     } completion:^(BOOL finished) {
-        self.audioWaveView.transform = CGAffineTransformMakeTranslation(0, 0);
+        self.audioWaveViewType1.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
 }
 
@@ -330,7 +344,7 @@ char *OSTypeToStr(char *buf, OSType t)
 {
     self.titleLabel.text = @"Press and Hold Bubble.";
 	recorder->StopRecord();
-    NSLog(@"%@",[_start timeIntervalSinceNow]);
+    NSLog(@"%f",[_start timeIntervalSinceNow]);
     [self setAq:nil];
 	recordFilePath = (__bridge CFStringRef)[NSTemporaryDirectory() stringByAppendingPathComponent: @"recordedFile.caf"];
 	self.pressToSpeakButton.userInteractionEnabled = YES;
