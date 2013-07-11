@@ -37,6 +37,7 @@
 		DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */; };
 		DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */; };
 		DFA8D4E1178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */; };
+		DFA8D4E4178ECF38005C2AF2 /* TDTWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D4E3178ECF37005C2AF2 /* TDTWaveView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,8 @@
 		DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DFA8D4DF178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTPushToTalkSimplerVC.h; sourceTree = "<group>"; };
 		DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTPushToTalkSimplerVC.m; sourceTree = "<group>"; };
+		DFA8D4E2178ECF37005C2AF2 /* TDTWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTWaveView.h; sourceTree = "<group>"; };
+		DFA8D4E3178ECF37005C2AF2 /* TDTWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTWaveView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,8 @@
 				DFA8D481178AA995005C2AF2 /* CADebugPrintf.h */,
 				DFA8D489178AB17E005C2AF2 /* MeterTable.h */,
 				DFA8D48A178AB17E005C2AF2 /* MeterTable.cpp */,
+				DFA8D4E2178ECF37005C2AF2 /* TDTWaveView.h */,
+				DFA8D4E3178ECF37005C2AF2 /* TDTWaveView.m */,
 			);
 			name = "CoreAudio Helpers";
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				DFA8D492178BE3AD005C2AF2 /* TDTAudioWaveView.m in Sources */,
 				DFA8D49C178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm in Sources */,
 				DFA8D4E1178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m in Sources */,
+				DFA8D4E4178ECF38005C2AF2 /* TDTWaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

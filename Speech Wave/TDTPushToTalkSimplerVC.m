@@ -9,6 +9,7 @@
 #import "TDTPushToTalkSimplerVC.h"
 #import "TDTAudioWaveView.h"
 #include <math.h>
+#import "TDTWaveView.h"
 
 @interface TDTPushToTalkSimplerVC ()
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) NSTimer* updateTimer;
 @property (nonatomic, strong) NSMutableArray* meterTable;
+@property (nonatomic, strong) TDTWaveView* otherWaveView;
 @property (nonatomic) float mScaleFactor;
 
 @end
@@ -87,10 +89,31 @@
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]] error:nil];
 }
 
+- (void)viewChoiceChanged
+{
+    if (self.waveTypePicker.selectedSegmentIndex != 0)
+    {
+        [self.audioWaveView removeFromSuperview];
+        self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1 Frame:CGRectMake(0, 30, 250, 150) MaxValue:0 MinValue:-160];
+        self.otherWaveView.backgroundColor = [UIColor clearColor];
+        [self.otherWaveView setZeroPointValue:-55];
+        [self.containerView addSubview:self.otherWaveView];
+    }
+    else
+    {
+        self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150) type:0];
+        self.audioWaveView.backgroundColor = [UIColor clearColor];
+        self.audioWaveView.maxWaveHeight = 4;
+        [self.containerView addSubview:self.audioWaveView];
+        [self animateWave];
+    }
+}
+
 - (void)setUpViews
 {
 //    self.waveViewChosen = 0;
 //    [self.waveViewPicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
+    [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
     
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 230)];
     self.containerView.clipsToBounds = YES;
@@ -133,15 +156,23 @@
 
 - (void)refreshaudioWaveView
 {
-    if (self.recorder.isRecording) {
-        [self.recorder updateMeters];
-        float v = [self.recorder averagePowerForChannel:0];
-        self.audioWaveView.maxWaveHeight = (float)[self.meterTable[(int)(v * self.mScaleFactor)] doubleValue] * 200;
+    if (self.waveTypePicker.selectedSegmentIndex == 0) {
+        if (self.recorder.isRecording) {
+            [self.recorder updateMeters];
+            float v = [self.recorder averagePowerForChannel:0];
+            self.audioWaveView.maxWaveHeight = (float)[self.meterTable[(int)(v * self.mScaleFactor)] doubleValue] * 200;
+        }
+        else {
+            self.audioWaveView.maxWaveHeight = 5;
+        }
+        [self.audioWaveView setNeedsDisplay];
     }
-    else {
-        self.audioWaveView.maxWaveHeight = 5;
+    else if (self.waveTypePicker.selectedSegmentIndex == 1) {
+        if (self.recorder.isRecording) {
+            [self.recorder updateMeters];
+            [self.otherWaveView startWavingWithValue:[self.recorder averagePowerForChannel:0]];
+        }
     }
-    [self.audioWaveView setNeedsDisplay];
 }
 
 - (void)userDidLongPressSpeakButton:(UILongPressGestureRecognizer *)gestureRecognizer

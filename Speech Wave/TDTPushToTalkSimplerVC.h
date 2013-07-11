@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TDTPushToTalkSimplerVC : UIViewController <UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *waveTypePicker;
 
 @end
