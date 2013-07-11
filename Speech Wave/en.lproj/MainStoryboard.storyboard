@@ -17,10 +17,12 @@
                                     <constraint firstAttribute="width" constant="310" id="fJy-pD-MOV"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title="Third"/>
-                                    <segment title="Fourth"/>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="5"/>
+                                    <segment title="6"/>
                                 </segments>
                                 <color key="tintColor" red="0.66666668650000005" green="0.98823535439999999" blue="0.78823536630000002" alpha="1" colorSpace="deviceRGB"/>
                             </segmentedControl>

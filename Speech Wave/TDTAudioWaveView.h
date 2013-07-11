@@ -11,5 +11,7 @@
 @interface TDTAudioWaveView : UIView
 
 @property (nonatomic) float maxWaveHeight;
+@property (nonatomic) int typeOfView;
 
+- (id)initWithFrame:(CGRect)frame type:(int)type;
 @end
