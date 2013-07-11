@@ -11,6 +11,8 @@
 
 @interface TDTPushToTalkRecorderViewController : UIViewController <UIGestureRecognizerDelegate, AVAudioPlayerDelegate>
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *waveViewPicker;
+
 @end
 
 @protocol TDTAudioRecorderUserProtocol <NSObject>

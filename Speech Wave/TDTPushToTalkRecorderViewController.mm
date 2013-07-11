@@ -187,14 +187,14 @@ const float _refreshHz = 1./30.;
     
     self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150)];
     self.audioWaveView.backgroundColor = [UIColor clearColor];
-    self.audioWaveView.maxWaveHeight = 2;
+    self.audioWaveView.maxWaveHeight = 4;
     [self.containerView addSubview:self.audioWaveView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     self.titleLabel.text = @"Press and Hold Bubble.";
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.backgroundColor = [UIColor greenColor];
+    self.titleLabel.backgroundColor = [UIColor colorWithRed:170./255. green:252./255. blue:201./255. alpha:1];
     [self.containerView addSubview:self.titleLabel];
     
     self.pressToSpeakButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"press-to-speak-button-highlighted.png"]];
