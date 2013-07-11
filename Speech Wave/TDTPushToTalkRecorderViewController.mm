@@ -334,8 +334,8 @@ char *OSTypeToStr(char *buf, OSType t)
     [self setAq:nil];
 	recordFilePath = (__bridge CFStringRef)[NSTemporaryDirectory() stringByAppendingPathComponent: @"recordedFile.caf"];
 	self.pressToSpeakButton.userInteractionEnabled = YES;
-    [self sendAudioDataToDelegate];
-    [self compressAudioToM4A];
+    //[self sendAudioDataToDelegate];
+    //[self compressAudioToM4A];
     AudioSessionSetActive(false);
 }
 

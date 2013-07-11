@@ -13,9 +13,9 @@
 - (void)drawRect:(CGRect)rect
 {
     const CGFloat strokeColour1[4] = {1.0,.75,1.0,1.0};
-    if (self.maxWaveHeight < 15 && self.maxWaveHeight > 4) {
-        self.maxWaveHeight = 4;
-    }
+//    if (self.maxWaveHeight < 15 && self.maxWaveHeight > 4) {
+//        self.maxWaveHeight = 4;
+//    }
     float tempY = self.maxWaveHeight;
     float w = 0;
     float y = rect.size.height;
@@ -25,7 +25,7 @@
     float x = width/cycles;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGMutablePathRef path = CGPathCreateMutable();
-    CGContextSetLineWidth(context, .35);
+    //CGContextSetLineWidth(context, .35);
     CGContextSetStrokeColor(context,strokeColour1);
     int count = 0;
     int cyclesByTwo = cycles/2;
