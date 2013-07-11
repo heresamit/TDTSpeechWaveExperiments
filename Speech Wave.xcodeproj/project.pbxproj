@@ -36,6 +36,7 @@
 		DFA8D4A3178BF25D005C2AF2 /* press-to-speak-button-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */; };
 		DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */; };
 		DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */; };
+		DFA8D4E1178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted.png"; sourceTree = "<group>"; };
 		DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted@2x.png"; sourceTree = "<group>"; };
 		DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		DFA8D4DF178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTPushToTalkSimplerVC.h; sourceTree = "<group>"; };
+		DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTPushToTalkSimplerVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */,
 				DFA8D49A178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.h */,
 				DFA8D49B178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm */,
+				DFA8D4DF178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.h */,
+				DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */,
 				DFA8D44A178A72C3005C2AF2 /* Supporting Files */,
 			);
 			path = "Speech Wave";
@@ -283,6 +288,7 @@
 				DFA8D48B178AB17E005C2AF2 /* MeterTable.cpp in Sources */,
 				DFA8D492178BE3AD005C2AF2 /* TDTAudioWaveView.m in Sources */,
 				DFA8D49C178BE92C005C2AF2 /* TDTPushToTalkRecorderViewController.mm in Sources */,
+				DFA8D4E1178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

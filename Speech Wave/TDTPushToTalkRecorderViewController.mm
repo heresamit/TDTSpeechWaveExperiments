@@ -116,7 +116,7 @@ const float _refreshHz = 1./30.;
     }
     if (_chan_lvls)
     {
-        self.audioWaveView.maxWaveHeight = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 200);;
+        self.audioWaveView.maxWaveHeight = ceil(_meterTable->ValueAt((float)(_chan_lvls[channelIdx].mAveragePower)) * 200);
         //NSLog(@"Audio Level: %f",self.audioWaveView.maxWaveHeight);
         [self.audioWaveView setNeedsDisplay];
         success = YES;
@@ -373,8 +373,8 @@ char *OSTypeToStr(char *buf, OSType t)
     [self setAq:nil];
 	recordFilePath = (__bridge CFStringRef)[NSTemporaryDirectory() stringByAppendingPathComponent: @"recordedFile.caf"];
 	self.pressToSpeakButton.userInteractionEnabled = YES;
-    //[self sendAudioDataToDelegate];
-    //[self compressAudioToM4A];
+    [self sendAudioDataToDelegate];
+    [self compressAudioToM4A];
     AudioSessionSetActive(false);
 }
 
@@ -421,7 +421,7 @@ char *OSTypeToStr(char *buf, OSType t)
                                     [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
                                     [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
                                     [NSNumber numberWithInt:2], AVNumberOfChannelsKey,
-                                    [NSNumber numberWithInt:64000], AVEncoderBitRateKey,
+                                    [NSNumber numberWithInt:32000], AVEncoderBitRateKey,
                                     [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
                                     nil];
     AVAssetWriterInput *writerInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeAudio outputSettings:outputSettings];
@@ -464,8 +464,11 @@ char *OSTypeToStr(char *buf, OSType t)
                                        error:&error];
                         _meinPlayer.delegate = self;
                         [_meinPlayer prepareToPlay];
+                        [_meinPlayer setVolume:1.0f];
                         AVAudioSession *session = [AVAudioSession sharedInstance];
                         [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//                        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//                        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
                         [session setActive:YES error:nil];
                         [_meinPlayer play];
                         break;
@@ -476,8 +479,6 @@ char *OSTypeToStr(char *buf, OSType t)
     }];
     self.titleLabel.text = @"Processing";
     NSLog(@"OUTSIDE");
-   
-    
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {

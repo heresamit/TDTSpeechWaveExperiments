@@ -79,7 +79,7 @@
         case 5:
         {
             CGContextSetStrokeColor(context,strokeColour1);
-            int cycles = 18;
+            int cycles = 22;
             float x = width/cycles;
             int cyclesByFour = cycles/4;
             float n;
@@ -100,8 +100,7 @@
         default:
             break;
     }
-    
-    CGContextDrawPath(context, kCGPathStroke);
+     CGContextDrawPath(context, kCGPathStroke);
 }
 
 @end
