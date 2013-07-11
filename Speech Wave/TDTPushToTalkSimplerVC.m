@@ -72,6 +72,8 @@
     
     self.session = [AVAudioSession sharedInstance];
     [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    UInt32 doChangeDefaultRoute = 1;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
     AudioChannelLayout channelLayout;
     memset(&channelLayout, 0, sizeof(AudioChannelLayout));
     channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
@@ -209,7 +211,6 @@
         [self.player stop];
         self.player = nil;
     }
-    NSLog(@"Started");
     [self.session setActive:YES error:nil];
     if (self.waveTypePicker.selectedSegmentIndex == 1) [self refreshOtherWaveView];
     [self.recorder record];
@@ -217,7 +218,6 @@
 
 - (void)stopRecording
 {
-    NSLog(@"Stopped");
     [self.session setActive:NO error:nil];
     [self.recorder stop];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]] error:nil];

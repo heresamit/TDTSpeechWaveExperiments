@@ -66,7 +66,9 @@
         lineWidth=kDefaultLineWidth;
         lineColor=[[UIColor redColor] CGColor];
         isFilling=NO;
-        fillingColor=[[UIColor blueColor] CGColor];
+//        UIColor *temp = [UIColor colorWithRed:170./255. green:252./255. blue:201./255. alpha:1];
+//        const CGColorRef myCOl = temp.CGColor;
+        fillingColor = [[UIColor greenColor] CGColor];//[[UIColor colorWithRed:170./255. green:252./255. blue:201./255. alpha:1] CGColor];
         zeroPointValue=min;
         zeroPointLineWidth=kDefaultZeroPointWidth;
         waveType=type;

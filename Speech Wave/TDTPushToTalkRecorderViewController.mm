@@ -66,7 +66,7 @@ const float _refreshHz = 1./30.;
 		try {
 			UInt32 val = 1;
 			XThrowIfError(AudioQueueSetProperty(_aq, kAudioQueueProperty_EnableLevelMetering, &val, sizeof(UInt32)), "couldn't enable metering");
-			// now check the number of channels in the new queue, we will need to reallocate if this has changed
+            	// now check the number of channels in the new queue, we will need to reallocate if this has changed
 			CAStreamBasicDescription queueFormat;
 			UInt32 data_sz = sizeof(queueFormat);
 			XThrowIfError(AudioQueueGetProperty(_aq, kAudioQueueProperty_StreamDescription, &queueFormat, &data_sz), "couldn't get stream description");
@@ -149,6 +149,9 @@ const float _refreshHz = 1./30.;
 		// we also need to listen to see if input availability changes
 		error = AudioSessionAddPropertyListener(kAudioSessionProperty_AudioInputAvailable, propListener,  (__bridge void*)self);
 		if (error) printf("ERROR ADDING AUDIO SESSION PROP LISTENER! %d\n", (int)error);
+   
+        UInt32 doChangeDefaultRoute = 1;
+        AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
         
 		error = AudioSessionSetActive(true);
 		if (error) printf("AudioSessionSetActive (true) failed");
