@@ -37,11 +37,12 @@
             //    if (self.maxWaveHeight < 15 && self.maxWaveHeight > 4) {
             //        self.maxWaveHeight = 4;
             //    }
-            if (self.typeOfView == 3) CGContextSetLineWidth(context, 2);
+            if (self.maxWaveHeight < 10) self.maxWaveHeight = 7;
+            if (self.typeOfView == 3) {
+                CGContextSetLineWidth(context, 2);
+            }
             CGContextSetStrokeColor(context,strokeColour1);
-            int cycles;
-            if (!self.typeOfView) cycles = 6 + arc4random_uniform(5);
-            else cycles = 4 + arc4random_uniform(5);;
+            int cycles = 8 + arc4random_uniform(7);
             if (cycles % 2 == 0) cycles++;
             float x = width/cycles;
             int cyclesByTwo = cycles/2;
