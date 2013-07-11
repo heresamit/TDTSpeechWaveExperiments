@@ -58,18 +58,34 @@
                                 <segments>
                                     <segment title="1"/>
                                     <segment title="2"/>
-                                    <segment title="3"/>
-                                    <segment title="4"/>
-                                    <segment title="5"/>
-                                    <segment title="6"/>
                                 </segments>
                                 <color key="tintColor" red="0.66666668650000005" green="0.98823535439999999" blue="0.78823536630000002" alpha="1" colorSpace="deviceRGB"/>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJH-26-pi6">
+                                <color key="backgroundColor" red="0.66666668650000005" green="0.98823535439999999" blue="0.78823536630000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="B0c-0w-iCQ"/>
+                                    <constraint firstAttribute="width" constant="52" id="iJq-G9-eRS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="jF5-bn-j3A" eventType="touchUpInside" id="TfE-44-eGT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VJH-26-pi6" firstAttribute="top" secondItem="Qbi-V7-qtf" secondAttribute="top" constant="5" id="5zn-S5-ebX"/>
+                            <constraint firstItem="VJH-26-pi6" firstAttribute="centerX" secondItem="IVI-o4-eUN" secondAttribute="centerX" type="default" id="TPG-rm-far"/>
                             <constraint firstAttribute="bottom" secondItem="IVI-o4-eUN" secondAttribute="bottom" constant="7" id="UXc-8X-vFu"/>
-                            <constraint firstItem="IVI-o4-eUN" firstAttribute="centerX" secondItem="Qbi-V7-qtf" secondAttribute="centerX" type="default" id="Vxg-ix-fgp"/>
+                            <constraint firstItem="IVI-o4-eUN" firstAttribute="centerX" secondItem="Qbi-V7-qtf" secondAttribute="centerX" type="default" id="zL7-4u-Gh3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AVAudioRecorder" id="wGi-qy-u5x"/>

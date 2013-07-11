@@ -5,7 +5,7 @@
 //  Created by Amit Chowdhary on 11/07/13.
 //  Copyright (c) 2013 Amit Chowdhary. All rights reserved.
 //
-#import <AVFoundation/AVFoundation.h>
+
 #import "TDTPushToTalkSimplerVC.h"
 #import "TDTAudioWaveView.h"
 #include <math.h>
@@ -80,13 +80,12 @@
                                                                                  [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
                                                                                  [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
                                                                                  [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                                                                 [NSNumber numberWithInt:32000], AVEncoderBitRateKey,
+                                                                                 [NSNumber numberWithInt:24000], AVEncoderBitRateKey,
                                                                                  [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
                                                                                  nil]
                                                    error:nil];
     self.recorder.meteringEnabled = YES;
     [self.recorder prepareToRecord];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]] error:nil];
 }
 
 - (void)viewChoiceChanged
@@ -101,6 +100,7 @@
     }
     else
     {
+        [self.otherWaveView removeFromSuperview];
         self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150) type:0];
         self.audioWaveView.backgroundColor = [UIColor clearColor];
         self.audioWaveView.maxWaveHeight = 4;
@@ -111,8 +111,6 @@
 
 - (void)setUpViews
 {
-//    self.waveViewChosen = 0;
-//    [self.waveViewPicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
     [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
     
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 230)];
@@ -162,6 +160,11 @@
             float v = [self.recorder averagePowerForChannel:0];
             self.audioWaveView.maxWaveHeight = (float)[self.meterTable[(int)(v * self.mScaleFactor)] doubleValue] * 200;
         }
+        else if (self.player.isPlaying) {
+            [self.player updateMeters];
+            float v = [self.player averagePowerForChannel:0];
+            self.audioWaveView.maxWaveHeight = (float)[self.meterTable[(int)(v * self.mScaleFactor/2)] doubleValue] * 200;
+        }
         else {
             self.audioWaveView.maxWaveHeight = 5;
         }
@@ -171,6 +174,10 @@
         if (self.recorder.isRecording) {
             [self.recorder updateMeters];
             [self.otherWaveView startWavingWithValue:[self.recorder averagePowerForChannel:0]];
+        }
+        else if (self.player.isPlaying) {
+            [self.player updateMeters];
+            [self.otherWaveView startWavingWithValue:[self.player averagePowerForChannel:0]];
         }
     }
 }
@@ -208,6 +215,31 @@
     NSLog(@"Stopped");
     [self.session setActive:NO error:nil];
     [self.recorder stop];
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]] error:nil];
+    self.player.delegate = self;
+    self.player.meteringEnabled = YES;
 }
 
+- (IBAction)playButtonPressed:(id)sender {
+    [self.session setActive:YES error:nil];
+    [self.player prepareToPlay];
+    if (self.waveTypePicker.selectedSegmentIndex == 1) {
+        [self refreshOtherWaveView];
+    }
+    [self.player setVolume:1.0f];
+    [self.player play];
+}
+
+- (void)refreshOtherWaveView
+{
+    [self.otherWaveView removeFromSuperview];
+    self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1 Frame:CGRectMake(0, 30, 250, 150) MaxValue:0 MinValue:-160];
+    self.otherWaveView.backgroundColor = [UIColor clearColor];
+    [self.otherWaveView setZeroPointValue:-55];
+    [self.containerView addSubview:self.otherWaveView];
+}
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    //NSLog(@"%d",flag);
+}
 @end
