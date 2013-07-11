@@ -205,8 +205,13 @@
 
 - (void)startRecording
 {
+    if (self.player.isPlaying) {
+        [self.player stop];
+        self.player = nil;
+    }
     NSLog(@"Started");
     [self.session setActive:YES error:nil];
+    if (self.waveTypePicker.selectedSegmentIndex == 1) [self refreshOtherWaveView];
     [self.recorder record];
 }
 
@@ -221,13 +226,15 @@
 }
 
 - (IBAction)playButtonPressed:(id)sender {
-    [self.session setActive:YES error:nil];
-    [self.player prepareToPlay];
-    if (self.waveTypePicker.selectedSegmentIndex == 1) {
-        [self refreshOtherWaveView];
+    if (!self.player.isPlaying && !self.recorder.isRecording) {
+        [self.session setActive:YES error:nil];
+        [self.player prepareToPlay];
+        if (self.waveTypePicker.selectedSegmentIndex == 1) {
+            [self refreshOtherWaveView];
+        }
+        [self.player setVolume:1.0f];
+        [self.player play];
     }
-    [self.player setVolume:1.0f];
-    [self.player play];
 }
 
 - (void)refreshOtherWaveView
