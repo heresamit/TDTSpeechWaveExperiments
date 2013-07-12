@@ -18,8 +18,8 @@ typedef enum {
 
 @interface TDTWaveView : UIView
 
-- (TDTWaveView *)initWaveWithType:(WaveType)type Frame:(CGRect)frame MaxValue:(CGFloat)max MinValue:(CGFloat)min;
-- (TDTWaveView *)setWaveType:(WaveType)type MaxValue:(CGFloat)max MinValue:(CGFloat)min;
+- (TDTWaveView *)initWaveWithType:(WaveType)type frame:(CGRect)frame maxValue:(CGFloat)max minValue:(CGFloat)min;
+- (TDTWaveView *)setWaveType:(WaveType)type maxValue:(CGFloat)max minValue:(CGFloat)min;
 
 /*fill the changing value*/
 - (void)startWavingWithValue:(CGFloat)value;

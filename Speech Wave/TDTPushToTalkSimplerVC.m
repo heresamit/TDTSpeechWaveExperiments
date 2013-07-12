@@ -14,15 +14,15 @@
 @interface TDTPushToTalkSimplerVC ()
 
 @property (nonatomic, strong) TDTAudioWaveView *audioWaveView;
-@property (nonatomic, strong) UILabel* titleLabel;
-@property (nonatomic, strong) UIImageView* pressToSpeakButton;
-@property (nonatomic, strong) UIView* containerView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *pressToSpeakButton;
+@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) AVAudioSession *session;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
-@property (nonatomic, strong) NSTimer* updateTimer;
-@property (nonatomic, strong) NSMutableArray* meterTable;
-@property (nonatomic, strong) TDTWaveView* otherWaveView;
+@property (nonatomic, strong) NSTimer *updateTimer;
+@property (nonatomic, strong) NSMutableArray *meterTable;
+@property (nonatomic, strong) TDTWaveView *otherWaveView;
 @property (nonatomic) float mScaleFactor;
 
 @end
@@ -102,9 +102,9 @@
   {
     [self.audioWaveView removeFromSuperview];
     self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1
-                                                         Frame:CGRectMake(0, 30, 250, 150)
-                                                      MaxValue:0
-                                                      MinValue:-160];
+                                                         frame:CGRectMake(0, 30, 250, 150)
+                                                      maxValue:0
+                                                      minValue:-160];
     self.otherWaveView.backgroundColor = [UIColor clearColor];
     [self.otherWaveView setZeroPointValue:-55];
     [self.containerView addSubview:self.otherWaveView];
@@ -289,9 +289,9 @@
 {
   [self.otherWaveView removeFromSuperview];
   self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1
-                                                       Frame:CGRectMake(0, 30, 250, 150)
-                                                    MaxValue:0
-                                                    MinValue:-160];
+                                                       frame:CGRectMake(0, 30, 250, 150)
+                                                    maxValue:0
+                                                    minValue:-160];
   self.otherWaveView.backgroundColor = [UIColor clearColor];
   [self.otherWaveView setZeroPointValue:-55];
   [self.containerView addSubview:self.otherWaveView];

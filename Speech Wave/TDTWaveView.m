@@ -43,41 +43,45 @@
 @implementation TDTWaveView
 
 #pragma mark - init
-- (TDTWaveView *)initWaveWithType:(WaveType)type Frame:(CGRect)frame MaxValue:(CGFloat)max MinValue:(CGFloat)min{
+
+- (TDTWaveView *)initWaveWithType:(WaveType)type
+                            frame:(CGRect)frame
+                         maxValue:(CGFloat)max
+                         minValue:(CGFloat)min{
   
   self=[super initWithFrame:frame];
   if (self) {
-    [self setWaveType:type MaxValue:max MinValue:min];
+    [self setWaveType:type maxValue:max minValue:min];
   }
   return self;
 }
 
-- (TDTWaveView *)setWaveType:(WaveType)type MaxValue:(CGFloat)max MinValue:(CGFloat)min{
+- (TDTWaveView *)setWaveType:(WaveType)type maxValue:(CGFloat)max minValue:(CGFloat)min{
   
   if (self) {
-    maxValue=max;
-    minValue=min;
-    lastPointX=0;
-    lastPointY=self.frame.size.height/2;
-    newPointX=0;
-    newPointY=self.frame.size.height/2;
-    xInterval=kDefaultXInterval;
+    maxValue = max;
+    minValue = min;
+    lastPointX = 0;
+    lastPointY = self.frame.size.height/2;
+    newPointX = 0;
+    newPointY = self.frame.size.height/2;
+    xInterval = kDefaultXInterval;
     
-    lineWidth=kDefaultLineWidth;
-    lineColor=[[UIColor redColor] CGColor];
-    isFilling=NO;
+    lineWidth = kDefaultLineWidth;
+    lineColor = [[UIColor redColor] CGColor];
+    isFilling = NO;
     fillingColor = [[UIColor greenColor] CGColor];
-    zeroPointValue=min;
-    zeroPointLineWidth=kDefaultZeroPointWidth;
-    waveType=type;
+    zeroPointValue = min;
+    zeroPointLineWidth = kDefaultZeroPointWidth;
+    waveType = type;
     
     switch (waveType) {
       case 0:
-        waveRange=self.frame.size.height;
-        banchmark=self.frame.size.height/2;
+        waveRange = self.frame.size.height;
+        banchmark = self.frame.size.height/2;
         break;
       case 1:
-        waveRange=self.frame.size.height/2;
+        waveRange = self.frame.size.height/2;
         break;
     }
   }
@@ -99,14 +103,13 @@
   [self setContentMode:UIViewContentModeRedraw];
 }
 
-
 #pragma mark - updateValue
 
 - (void)startWavingWithValue:(CGFloat)value{
   
-  lastPointX=newPointX;
-  lastPointY=newPointY;
-  newPointX+=xInterval;
+  lastPointX = newPointX;
+  lastPointY = newPointY;
+  newPointX += xInterval;
   
   switch (waveType) {
     case 0:
@@ -118,8 +121,8 @@
   }
   
   if (newPointX>self.bounds.size.width) {
-    lastPointX=0;
-    newPointX=xInterval;
+    lastPointX = 0;
+    newPointX = xInterval;
     [self setNeedsDisplay];
   }else{
     [self setNeedsDisplayInRect:CGRectMake(lastPointX, 0, xInterval, self.bounds.size.height)];
@@ -127,14 +130,14 @@
 }
 
 - (void)calculateDefaultWaveWithValue:(CGFloat)value{
-  newPointY=waveRange-waveRange*(value-minValue)/(maxValue-minValue);
+  newPointY = waveRange - waveRange * ((value - minValue) / (maxValue - minValue));
 }
 
 - (void)calculateMirrorWaveWithValue:(CGFloat)value{
   if (value<zeroPointValue) {
-    newPointY=waveRange-zeroPointLineWidth/2;
+    newPointY = waveRange - (zeroPointLineWidth / 2);
   }else{
-    newPointY=waveRange-waveRange*(value-zeroPointValue)/(maxValue-zeroPointValue);
+    newPointY = waveRange - waveRange * ((value - zeroPointValue) / (maxValue - zeroPointValue));
   }
 }
 
@@ -154,7 +157,7 @@
 
 - (void)drawDefaultWave{
   
-  CGContextRef context=UIGraphicsGetCurrentContext();
+  CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextBeginPath(context);
   
   CGMutablePathRef path=CGPathCreateMutable();
@@ -168,7 +171,7 @@
   CGPathRelease(path);
   
   if (YES) {
-    CGMutablePathRef path=CGPathCreateMutable();
+    CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, newPointX, newPointY);
     CGPathAddLineToPoint(path, NULL, newPointX, self.bounds.size.height);
     CGPathAddLineToPoint(path, NULL, lastPointX, self.bounds.size.height);
@@ -183,7 +186,7 @@
 }
 
 - (void)drawMirrorWave{
-  CGContextRef context=UIGraphicsGetCurrentContext();
+  CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextBeginPath(context);
   
   CGMutablePathRef path=CGPathCreateMutable();
@@ -203,46 +206,46 @@
 #pragma mark - settings
 
 - (void)setWaveRange:(CGFloat)range{
-  waveRange=range;
+  waveRange = range;
 }
 
 - (void)setXInterval:(CGFloat)interval{
   if (xInterval) {
-    xInterval=interval;
+    xInterval = interval;
   }
 }
 
 - (void)setWaveLineWidth:(CGFloat)width{
-  lineWidth=width;
+  lineWidth = width;
 }
 
 - (void)setWaveLineColor:(CGColorRef)color{
-  lineColor=color;
+  lineColor = color;
 }
 
 - (void)setBanchmarkHeight:(CGFloat)height{
   banchmark=height;
-  if (height>=self.bounds.size.height/2) {
-    waveRange=height*2;
+  if (height >= self.bounds.size.height/2) {
+    waveRange = height*2;
   }else{
-    waveRange=(self.bounds.size.height-height)*2;
+    waveRange = (self.bounds.size.height - height) * 2;
   }
 }
 
 - (void)setFilling:(BOOL)filling{
-  isFilling=filling;
+  isFilling = filling;
 }
 
 - (void)setFillingColor:(CGColorRef)color{
-  fillingColor=color;
+  fillingColor = color;
 }
 
 - (void)setZeroPointValue:(CGFloat)value{
-  zeroPointValue=value;
+  zeroPointValue = value;
 }
 
 - (void)setZeroPointLineWidth:(CGFloat)width{
-  zeroPointLineWidth=width;
+  zeroPointLineWidth = width;
 }
 
 @end
