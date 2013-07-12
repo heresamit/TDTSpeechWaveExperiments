@@ -21,10 +21,8 @@ typedef enum {
 - (TDTWaveView *)initWaveWithType:(WaveType)type Frame:(CGRect)frame MaxValue:(CGFloat)max MinValue:(CGFloat)min;
 - (TDTWaveView *)setWaveType:(WaveType)type MaxValue:(CGFloat)max MinValue:(CGFloat)min;
 
-
 /*fill the changing value*/
 - (void)startWavingWithValue:(CGFloat)value;
-
 
 /*settings*/
 //wave range in y axis，default is established view's height in WaveTypeDefault and height/2 in WaveTypeMirror
