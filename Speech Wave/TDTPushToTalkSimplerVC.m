@@ -66,28 +66,38 @@
 	}
 }
 
-- (void)setUpAudioObjects
+- (void)setUpAudioSession
 {
-    [self setUpMeterTable];
-    
     self.session = [AVAudioSession sharedInstance];
     [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     UInt32 doChangeDefaultRoute = 1;
     AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
+}
+
+- (void)setUpRecorder
+{
     AudioChannelLayout channelLayout;
     memset(&channelLayout, 0, sizeof(AudioChannelLayout));
     channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
     self.recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]]
                                                 settings:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                 [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
-                                                                                 [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
-                                                                                 [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                                                                 [NSNumber numberWithInt:24000], AVEncoderBitRateKey,
-                                                                                 [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
-                                                                                 nil]
+                                                          [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                                          [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
+                                                          [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                                          [NSNumber numberWithInt:24000], AVEncoderBitRateKey,
+                                                          [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
+                                                          nil]
                                                    error:nil];
     self.recorder.meteringEnabled = YES;
     [self.recorder prepareToRecord];
+
+}
+
+- (void)setUpAudioObjects
+{
+    [self setUpMeterTable];
+    [self setUpAudioSession];
+    [self setUpRecorder];
 }
 
 - (void)viewChoiceChanged
@@ -127,19 +137,18 @@
     [self.containerView addSubview:self.audioWaveView];
 }
 
-- (void)setUpViews
+- (void)setUpTitleLabel
 {
-    [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
-    [self setUpContainer];
-    [self setUpAudioWaveView];
-    
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     self.titleLabel.text = @"Press and Hold Bubble.";
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.backgroundColor = [UIColor colorWithRed:170./255. green:252./255. blue:201./255. alpha:1];
     [self.containerView addSubview:self.titleLabel];
-    
+}
+
+- (void)setUpPressToSpeakButton
+{
     self.pressToSpeakButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"press-to-speak-button-highlighted.png"]];
     self.pressToSpeakButton.frame = CGRectMake(100, 180, 50, 50);
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(userDidLongPressSpeakButton:)];
@@ -148,17 +157,29 @@
     [self.pressToSpeakButton addGestureRecognizer:lpgr];
     self.pressToSpeakButton.userInteractionEnabled = YES;
     [self.containerView addSubview:self.pressToSpeakButton];
-    
-    [self.view addSubview:self.containerView];
+}
+
+- (void)setUpTimer
+{
     if (self.updateTimer) [_updateTimer invalidate];
     self.updateTimer = [NSTimer
-                    scheduledTimerWithTimeInterval:1./30.
-                    target:self
-                    selector:@selector(refreshaudioWaveView)
-                    userInfo:nil
-                    repeats:YES
-                    ];
-    
+                        scheduledTimerWithTimeInterval:1./30.
+                        target:self
+                        selector:@selector(refreshaudioWaveView)
+                        userInfo:nil
+                        repeats:YES
+                        ];
+}
+
+- (void)setUpViews
+{
+    [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
+    [self setUpContainer];
+    [self setUpAudioWaveView];
+    [self setUpTitleLabel];
+    [self setUpPressToSpeakButton];
+    [self.view addSubview:self.containerView];
+    [self setUpTimer];
     [self animateWave];
 }
 
@@ -253,6 +274,7 @@
     [self.otherWaveView setZeroPointValue:-55];
     [self.containerView addSubview:self.otherWaveView];
 }
+
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     //NSLog(@"%d",flag);
