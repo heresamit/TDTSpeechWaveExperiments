@@ -82,7 +82,6 @@
 		DFA8D437178A72C3005C2AF2 = {
 			isa = PBXGroup;
 			children = (
-				DFA8D4F4179003FD005C2AF2 /* AudioToolbox.framework */,
 				DFA8D449178A72C3005C2AF2 /* Speech Wave */,
 				DFA8D442178A72C3005C2AF2 /* Frameworks */,
 				DFA8D441178A72C3005C2AF2 /* Products */,
@@ -100,6 +99,7 @@
 		DFA8D442178A72C3005C2AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D4F4179003FD005C2AF2 /* AudioToolbox.framework */,
 				DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */,
 				DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */,
 				DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */,

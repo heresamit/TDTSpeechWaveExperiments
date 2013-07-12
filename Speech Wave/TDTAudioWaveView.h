@@ -14,4 +14,5 @@
 @property (nonatomic) int typeOfView;
 
 - (id)initWithFrame:(CGRect)frame type:(int)type;
+
 @end
