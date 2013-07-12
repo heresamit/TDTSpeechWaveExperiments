@@ -29,21 +29,11 @@
 
 @implementation TDTPushToTalkSimplerVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    // Custom initialization
-  }
-  return self;
-}
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   [self setUpAudioObjects];
   [self setUpViews];
-	// Do any additional setup after loading the view
 }
 
 - (void)setUpMeterTable
@@ -151,12 +141,18 @@
 {
   self.pressToSpeakButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"press-to-speak-button-highlighted.png"]];
   self.pressToSpeakButton.frame = CGRectMake(100, 180, 50, 50);
-  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(userDidLongPressSpeakButton:)];
-  lpgr.minimumPressDuration = 0.5;
-  lpgr.delegate = self;
-  [self.pressToSpeakButton addGestureRecognizer:lpgr];
+  [self addLongPressGestureRecognizerTo:self.pressToSpeakButton];
   self.pressToSpeakButton.userInteractionEnabled = YES;
   [self.containerView addSubview:self.pressToSpeakButton];
+}
+
+- (void)addLongPressGestureRecognizerTo:(id)view
+{
+  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(userDidLongPressSpeakButton:)];
+  lpgr.minimumPressDuration = 0.5;
+  lpgr.delegate = self;
+  [view addGestureRecognizer:lpgr];
 }
 
 - (void)setUpTimer
