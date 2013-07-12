@@ -52,7 +52,7 @@
 		double decibels = i * mDecibelResolution;
 		double amp = pow(10., 0.05 * decibels);
 		double adjAmp = (amp - minAmp) * invAmpRange;
-		[self.meterTable setObject:[NSNumber numberWithDouble:pow(adjAmp, rroot)] atIndexedSubscript:i];
+		[self.meterTable setObject:@(pow(adjAmp, rroot)) atIndexedSubscript:i];
 	}
 }
 
@@ -61,22 +61,28 @@
   self.session = [AVAudioSession sharedInstance];
   [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
   UInt32 doChangeDefaultRoute = 1;
-  AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
+  AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+                           sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
 }
 
-- (void)setUpRecorder
+- (NSDictionary *)getRecordSettingsDictionary
 {
   AudioChannelLayout channelLayout;
   memset(&channelLayout, 0, sizeof(AudioChannelLayout));
   channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
-  self.recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]]
-                                              settings:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                        [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
-                                                        [NSNumber numberWithFloat:11025.0], AVSampleRateKey,
-                                                        [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                                        [NSNumber numberWithInt:24000], AVEncoderBitRateKey,
-                                                        [NSData dataWithBytes:&channelLayout length:sizeof(AudioChannelLayout)], AVChannelLayoutKey,
-                                                        nil]
+  return @{AVFormatIDKey: @(kAudioFormatMPEG4AAC),
+           AVSampleRateKey: @11025.0f,
+           AVNumberOfChannelsKey: @1,
+           AVEncoderBitRateKey: @24000,
+           AVChannelLayoutKey: [NSData dataWithBytes:&channelLayout
+                                              length:sizeof(AudioChannelLayout)]};
+}
+
+- (void)setUpRecorder
+{
+  NSURL *fileURL = [NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]];
+  self.recorder = [[AVAudioRecorder alloc] initWithURL:fileURL
+                                              settings:[self getRecordSettingsDictionary]
                                                  error:nil];
   self.recorder.meteringEnabled = YES;
   [self.recorder prepareToRecord];
@@ -95,7 +101,10 @@
   if (self.waveTypePicker.selectedSegmentIndex != 0)
   {
     [self.audioWaveView removeFromSuperview];
-    self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1 Frame:CGRectMake(0, 30, 250, 150) MaxValue:0 MinValue:-160];
+    self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1
+                                                         Frame:CGRectMake(0, 30, 250, 150)
+                                                      MaxValue:0
+                                                      MinValue:-160];
     self.otherWaveView.backgroundColor = [UIColor clearColor];
     [self.otherWaveView setZeroPointValue:-55];
     [self.containerView addSubview:self.otherWaveView];
@@ -103,7 +112,8 @@
   else
   {
     [self.otherWaveView removeFromSuperview];
-    self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150) type:0];
+    self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150)
+                                                            type:0];
     self.audioWaveView.backgroundColor = [UIColor clearColor];
     self.audioWaveView.maxWaveHeight = 4;
     [self.containerView addSubview:self.audioWaveView];
@@ -121,7 +131,8 @@
 
 - (void)setUpAudioWaveView
 {
-  self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150) type:0];
+  self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150)
+                                                          type:0];
   self.audioWaveView.backgroundColor = [UIColor clearColor];
   self.audioWaveView.maxWaveHeight = 4;
   [self.containerView addSubview:self.audioWaveView];
@@ -133,7 +144,10 @@
   self.titleLabel.text = @"Press and Hold Bubble.";
   self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
   self.titleLabel.textAlignment = NSTextAlignmentCenter;
-  self.titleLabel.backgroundColor = [UIColor colorWithRed:170./255. green:252./255. blue:201./255. alpha:1];
+  self.titleLabel.backgroundColor = [UIColor colorWithRed:170./255.
+                                                    green:252./255.
+                                                     blue:201./255.
+                                                    alpha:1];
   [self.containerView addSubview:self.titleLabel];
 }
 
@@ -148,11 +162,11 @@
 
 - (void)addLongPressGestureRecognizerTo:(id)view
 {
-  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                     action:@selector(userDidLongPressSpeakButton:)];
-  lpgr.minimumPressDuration = 0.5;
-  lpgr.delegate = self;
-  [view addGestureRecognizer:lpgr];
+  UILongPressGestureRecognizer *gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                                  action:@selector(userDidLongPressSpeakButton:)];
+  gestureRecognizer.minimumPressDuration = 0.5;
+  gestureRecognizer.delegate = self;
+  [view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)setUpTimer
@@ -169,7 +183,9 @@
 
 - (void)setUpViews
 {
-  [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
+  [self.waveTypePicker addTarget:self
+                          action:@selector(viewChoiceChanged)
+                forControlEvents:UIControlEventValueChanged];
   [self setUpContainer];
   [self setUpAudioWaveView];
   [self setUpTitleLabel];
@@ -223,8 +239,12 @@
 
 - (void)animateWave
 {
-  [UIView animateWithDuration:.5 delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
-    self.audioWaveView.transform = CGAffineTransformMakeTranslation(self.audioWaveView.frame.size.width/2, 0);
+  CGFloat dx = self.audioWaveView.frame.size.width/2;
+  [UIView animateWithDuration:.5
+                        delay:0.0
+                      options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear
+                   animations:^{
+    self.audioWaveView.transform = CGAffineTransformMakeTranslation(dx, 0);
   } completion:^(BOOL finished) {
     self.audioWaveView.transform = CGAffineTransformMakeTranslation(0, 0);
   }];
@@ -237,7 +257,9 @@
     self.player = nil;
   }
   [self.session setActive:YES error:nil];
-  if (self.waveTypePicker.selectedSegmentIndex == 1) [self refreshOtherWaveView];
+  if (self.waveTypePicker.selectedSegmentIndex == 1) {
+    [self refreshOtherWaveView];
+  }
   [self.recorder record];
 }
 
@@ -245,7 +267,8 @@
 {
   [self.session setActive:NO error:nil];
   [self.recorder stop];
-  self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]] error:nil];
+  NSURL *fileURL = [NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.m4a"]];
+  self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
   self.player.delegate = self;
   self.player.meteringEnabled = YES;
 }
@@ -265,7 +288,10 @@
 - (void)refreshOtherWaveView
 {
   [self.otherWaveView removeFromSuperview];
-  self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1 Frame:CGRectMake(0, 30, 250, 150) MaxValue:0 MinValue:-160];
+  self.otherWaveView = [[TDTWaveView alloc] initWaveWithType:1
+                                                       Frame:CGRectMake(0, 30, 250, 150)
+                                                    MaxValue:0
+                                                    MinValue:-160];
   self.otherWaveView.backgroundColor = [UIColor clearColor];
   [self.otherWaveView setZeroPointValue:-55];
   [self.containerView addSubview:self.otherWaveView];

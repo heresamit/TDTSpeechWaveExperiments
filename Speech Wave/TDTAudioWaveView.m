@@ -35,9 +35,6 @@
     case 3:
     case 4:
     {
-      //    if (self.maxWaveHeight < 15 && self.maxWaveHeight > 4) {
-      //        self.maxWaveHeight = 4;
-      //    }
       if (self.maxWaveHeight < 10) self.maxWaveHeight = 7;
       if (self.typeOfView == 3 || self.typeOfView == 4) {
         CGContextSetLineWidth(context, 2);
@@ -93,7 +90,6 @@
         count++;
         count %= 9;
       }
-      
       CGContextAddPath(context, path);
       break;
     }
