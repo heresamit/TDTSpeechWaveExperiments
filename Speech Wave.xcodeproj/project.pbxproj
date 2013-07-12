@@ -18,8 +18,6 @@
 		DFA8D45A178A72C3005C2AF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */; };
 		DFA8D45D178A72C3005C2AF2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */; };
 		DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */; };
-		DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */; };
-		DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */; };
 		DFA8D47D178AA8CA005C2AF2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */; };
 		DFA8D47F178AA90A005C2AF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */; };
 		DFA8D492178BE3AD005C2AF2 /* TDTAudioWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */; };
@@ -27,9 +25,9 @@
 		DFA8D4A0178BF183005C2AF2 /* press-to-speak-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */; };
 		DFA8D4A3178BF25D005C2AF2 /* press-to-speak-button-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */; };
 		DFA8D4A4178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */; };
-		DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */; };
 		DFA8D4E1178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */; };
 		DFA8D4E4178ECF38005C2AF2 /* TDTWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8D4E3178ECF37005C2AF2 /* TDTWaveView.m */; };
+		DFA8D4F5179003FD005C2AF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA8D4F4179003FD005C2AF2 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +46,6 @@
 		DFA8D459178A72C3005C2AF2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DFA8D45C178A72C3005C2AF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DFA8D490178BE3AD005C2AF2 /* TDTAudioWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTAudioWaveView.h; sourceTree = "<group>"; };
@@ -58,11 +54,11 @@
 		DFA8D49E178BF183005C2AF2 /* press-to-speak-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button@2x.png"; sourceTree = "<group>"; };
 		DFA8D4A1178BF25D005C2AF2 /* press-to-speak-button-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted.png"; sourceTree = "<group>"; };
 		DFA8D4A2178BF25D005C2AF2 /* press-to-speak-button-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "press-to-speak-button-highlighted@2x.png"; sourceTree = "<group>"; };
-		DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DFA8D4DF178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTPushToTalkSimplerVC.h; sourceTree = "<group>"; };
 		DFA8D4E0178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTPushToTalkSimplerVC.m; sourceTree = "<group>"; };
 		DFA8D4E2178ECF37005C2AF2 /* TDTWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTWaveView.h; sourceTree = "<group>"; };
 		DFA8D4E3178ECF37005C2AF2 /* TDTWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTWaveView.m; sourceTree = "<group>"; };
+		DFA8D4F4179003FD005C2AF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,12 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFA8D4B4178D3A5E005C2AF2 /* CoreMedia.framework in Frameworks */,
+				DFA8D4F5179003FD005C2AF2 /* AudioToolbox.framework in Frameworks */,
 				DFA8D47F178AA90A005C2AF2 /* QuartzCore.framework in Frameworks */,
 				DFA8D446178A72C3005C2AF2 /* Foundation.framework in Frameworks */,
 				DFA8D47D178AA8CA005C2AF2 /* CoreFoundation.framework in Frameworks */,
-				DFA8D46B178A72DE005C2AF2 /* CoreAudio.framework in Frameworks */,
-				DFA8D469178A72D8005C2AF2 /* AudioToolbox.framework in Frameworks */,
 				DFA8D467178A72D3005C2AF2 /* AVFoundation.framework in Frameworks */,
 				DFA8D444178A72C3005C2AF2 /* UIKit.framework in Frameworks */,
 				DFA8D448178A72C3005C2AF2 /* CoreGraphics.framework in Frameworks */,
@@ -88,7 +82,7 @@
 		DFA8D437178A72C3005C2AF2 = {
 			isa = PBXGroup;
 			children = (
-				DFA8D4B3178D3A5E005C2AF2 /* CoreMedia.framework */,
+				DFA8D4F4179003FD005C2AF2 /* AudioToolbox.framework */,
 				DFA8D449178A72C3005C2AF2 /* Speech Wave */,
 				DFA8D442178A72C3005C2AF2 /* Frameworks */,
 				DFA8D441178A72C3005C2AF2 /* Products */,
@@ -108,8 +102,6 @@
 			children = (
 				DFA8D47E178AA90A005C2AF2 /* QuartzCore.framework */,
 				DFA8D47C178AA8CA005C2AF2 /* CoreFoundation.framework */,
-				DFA8D46A178A72DE005C2AF2 /* CoreAudio.framework */,
-				DFA8D468178A72D8005C2AF2 /* AudioToolbox.framework */,
 				DFA8D466178A72D3005C2AF2 /* AVFoundation.framework */,
 				DFA8D443178A72C3005C2AF2 /* UIKit.framework */,
 				DFA8D445178A72C3005C2AF2 /* Foundation.framework */,
@@ -123,7 +115,6 @@
 			children = (
 				DFA8D452178A72C3005C2AF2 /* TDTAppDelegate.h */,
 				DFA8D453178A72C3005C2AF2 /* TDTAppDelegate.m */,
-				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
 				DFA8D490178BE3AD005C2AF2 /* TDTAudioWaveView.h */,
 				DFA8D491178BE3AD005C2AF2 /* TDTAudioWaveView.m */,
 				DFA8D4DF178EBECC005C2AF2 /* TDTPushToTalkSimplerVC.h */,
@@ -138,6 +129,7 @@
 		DFA8D44A178A72C3005C2AF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFA8D45B178A72C3005C2AF2 /* MainStoryboard.storyboard */,
 				DFA8D4AF178D1BE7005C2AF2 /* Images */,
 				DFA8D44B178A72C3005C2AF2 /* Speech Wave-Info.plist */,
 				DFA8D44C178A72C3005C2AF2 /* InfoPlist.strings */,
