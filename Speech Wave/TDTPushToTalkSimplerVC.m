@@ -29,6 +29,18 @@
 
 @implementation TDTPushToTalkSimplerVC
 
+@synthesize audioWaveView = audioWaveView_;
+@synthesize titleLabel = titleLabel_;
+@synthesize pressToSpeakButton = pressToSpeakButton_;
+@synthesize containerView = containerView_;
+@synthesize player = player_;
+@synthesize session = session_;
+@synthesize recorder = recorder_;
+@synthesize updateTimer = updateTiemr_;
+@synthesize meterTable = meterTable_;
+@synthesize otherWaveView = otherWaveView_;
+@synthesize mScaleFactor = mScaleFactor_;
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -171,7 +183,7 @@
 
 - (void)setUpTimer
 {
-  if (self.updateTimer) [_updateTimer invalidate];
+  if (self.updateTimer) [self.updateTimer invalidate];
   self.updateTimer = [NSTimer
                       scheduledTimerWithTimeInterval:1./30.
                       target:self

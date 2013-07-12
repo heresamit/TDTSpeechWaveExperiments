@@ -10,6 +10,9 @@
 
 @implementation TDTAudioWaveView
 
+@synthesize typeOfView = typeOfView_;
+@synthesize maxWaveHeight = maxWaveHeight_;
+
 - (id)initWithFrame:(CGRect)frame type:(int)type
 {
   self = [super initWithFrame:frame];
