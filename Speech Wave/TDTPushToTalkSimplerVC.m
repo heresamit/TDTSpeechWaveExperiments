@@ -11,7 +11,7 @@
 #include <math.h>
 #import "TDTWaveView.h"
 
-@interface TDTPushToTalkSimplerVC ()
+@interface TDTPushToTalkSimplerVC () <UIGestureRecognizerDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) TDTAudioWaveView *audioWaveView;
 @property (nonatomic, strong) UILabel *titleLabel;

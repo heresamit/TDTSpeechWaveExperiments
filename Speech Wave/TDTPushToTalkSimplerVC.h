@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface TDTPushToTalkSimplerVC : UIViewController <UIGestureRecognizerDelegate, AVAudioPlayerDelegate>
+@interface TDTPushToTalkSimplerVC : UIViewController
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *waveTypePicker;
 
