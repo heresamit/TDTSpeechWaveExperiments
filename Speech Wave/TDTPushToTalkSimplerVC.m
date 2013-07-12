@@ -111,19 +111,27 @@
     }
 }
 
-- (void)setUpViews
+- (void)setUpContainer
 {
-    [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
-    
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 230)];
     self.containerView.clipsToBounds = YES;
     self.containerView.userInteractionEnabled = YES;
     [self.view addSubview:self.containerView];
-    
+}
+
+- (void)setUpAudioWaveView
+{
     self.audioWaveView = [[TDTAudioWaveView alloc] initWithFrame:CGRectMake(-250, 30, 500, 150) type:0];
     self.audioWaveView.backgroundColor = [UIColor clearColor];
     self.audioWaveView.maxWaveHeight = 4;
     [self.containerView addSubview:self.audioWaveView];
+}
+
+- (void)setUpViews
+{
+    [self.waveTypePicker addTarget:self action:@selector(viewChoiceChanged) forControlEvents:UIControlEventValueChanged];
+    [self setUpContainer];
+    [self setUpAudioWaveView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     self.titleLabel.text = @"Press and Hold Bubble.";
